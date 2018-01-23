@@ -1,0 +1,58 @@
+@mixin nLiveChat($baseColor, $textColor) {
+  /* stylelint-disable */
+  .liveAgent {
+    // this element should never be shown
+    // liveAgent js requires the provision of an 'offline' element to set values on
+    // we are working around 3rd party js code with UI opinions
+    .liveAgentOffline {
+      visibility: hidden;
+    }
+  }
+
+  #liveAgentButtonContainer {
+    @include oVisualEffectsShadowsElevation('high', oColorsGetPaletteColor('black-90'));
+  }
+
+  #liveAgentButton {
+    font-weight: normal;
+    border-color: oColorsGetPaletteColor($baseColor);
+    padding-right: 0px;
+  }
+
+  #liveAgentButton:hover {
+    color: oColorsGetPaletteColor($textColor);
+    background-color: oColorsGetPaletteColor($baseColor);
+  }
+
+  .underline {
+    border-color: oColorsGetPaletteColor($textColor);
+    margin-left: 5px;
+  }
+
+  #liveAgentButtonClose {
+    @include oIconsGetIcon('cross', oColorsGetPaletteColor($textColor), 30, $iconset-version: 1);
+    vertical-align: middle;
+    position: static;
+    min-width: 0px;
+    background-position-x: left;
+    padding-right: 30px;
+  }
+
+  @media (max-width: 46.24em) {
+    .n-sliding-popup {
+      left: auto;
+    }
+  }
+
+  .n-sliding-popup {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-width: 0px;
+    border-radius: 0px;
+    background: transparent;
+    padding: 0px;
+    margin: 10px;
+    background-color: oColorsGetPaletteColor($base);
+  }
+  /* stylelint-enable */
+}

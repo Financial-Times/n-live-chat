@@ -1,0 +1,60 @@
+@import "o-colors/main";
+@import "o-icons/main";
+@import "o-visual-effects/main";
+@import 'n-sliding-popup/main';
+
+/* stylelint-disable */
+.liveAgent {
+  //this element should never be shown, is entirely here as liveAgent js requires
+  //the provision of an 'offline' element to set values on - it's 3rd party js code trying
+  //to be in charge of UI, this is part of our bodgying around that
+  .liveAgentOffline {
+    visibility: hidden;
+  }
+}
+
+#liveAgentButtonContainer {
+  @include oVisualEffectsShadowsElevation('high', getColor('black-90'));
+}
+
+#liveAgentButton {
+  font-weight: normal;
+  border-color: getColor('org-b2c-dark');
+  padding-right: 0px;
+}
+#liveAgentButton:hover {
+  color: getColor('white');
+  background-color: getColor('org-b2c-dark');
+}
+
+.underline {
+  border-color: getColor('white');
+  margin-left: 5px;
+}
+
+#liveAgentButtonClose {
+  @include oIconsGetIcon('cross', oColorsGetPaletteColor('white-80'), 30, $iconset-version: 1);
+  vertical-align: middle;
+  position: static;
+  min-width: 0px;
+  background-position-x: left;
+  padding-right: 30px;
+}
+
+@media (max-width: 46.24em) {
+  .n-sliding-popup {
+    left: auto;
+  }
+}
+
+.n-sliding-popup {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-width: 0px;
+  border-radius: 0px;
+  background: transparent;
+  padding: 0px;
+  margin: 10px;
+  background-color: getColor('org-b2c-dark');
+}
+/* stylelint-enable */
