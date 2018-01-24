@@ -1,4 +1,7 @@
-@mixin nLiveChat($baseColor, $textColor) {
+@mixin nLiveChat(
+	$baseColor: 'org-b2c-dark', 
+	$textColor: 'white'
+) {
   /* stylelint-disable */
   .liveAgent {
     // this element should never be shown
