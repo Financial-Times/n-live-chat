@@ -20,7 +20,6 @@ interface LiveChatOptions {
 }
 
 export default class LiveChat {
-	style: string;
 	config: SalesforceConfig;
 	container: HTMLElement;
 	button: HTMLElement;
@@ -28,8 +27,7 @@ export default class LiveChat {
 	onlineIndicator: HTMLElement;
 	offlineIndicator: HTMLElement;
 
-    constructor(style = "popup") {
-		this.style = style;
+    constructor(private style = "popup") {
 		this.container = document.getElementById('liveAgent') as HTMLDivElement;
 		this.button = document.getElementById('liveAgentButton') as HTMLButtonElement;
 		this.onlineIndicator = document.getElementById('liveAgentOnlineIndicator') as HTMLDivElement;
