@@ -28,7 +28,7 @@ export default class LiveChat {
 	onlineIndicator: HTMLElement;
 	offlineIndicator: HTMLElement;
 
-    constructor(style: string) {
+    constructor(style = "popup") {
 		this.style = style;
 		this.container = document.getElementById('liveAgent') as HTMLDivElement;
 		this.button = document.getElementById('liveAgentButton') as HTMLButtonElement;
@@ -47,7 +47,7 @@ export default class LiveChat {
 	}
 
 	// clients should wrap LiveChat.init() in try - catch blocks
-	init(callbacks: LiveChatCallbacks, options: LiveChatOptions) : void {
+	init(callbacks?: LiveChatCallbacks, options?: LiveChatOptions) : void {
 		let script: HTMLScriptElement = document.createElement('script');
 		script.src = `${this.config.host}/content/g/js/41.0/deployment.js`;
 		script.onload = () => {
