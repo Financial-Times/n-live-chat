@@ -27,7 +27,7 @@ export default class LiveChat {
 	onlineIndicator: HTMLElement;
 	offlineIndicator: HTMLElement;
 
-    constructor(private style = "popup") {
+    constructor(public style = 'popup') {
 		this.container = document.getElementById('liveAgent') as HTMLDivElement;
 		this.button = document.getElementById('liveAgentButton') as HTMLButtonElement;
 		this.onlineIndicator = document.getElementById('liveAgentOnlineIndicator') as HTMLDivElement;
