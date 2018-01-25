@@ -1,23 +1,16 @@
-@import "o-colors/main";
-@import "o-icons/main";
-@import "o-visual-effects/main";
+@import 'o-colors/main';
+@import 'o-typography/main';
+@import 'o-icons/main';
+@import 'o-buttons/main';
+@import 'o-visual-effects/main';
 @import 'n-sliding-popup/main';
+@import 'mixins';
 
-$n-live-chat-is-silent: true !default;
-
-@if ($n-live-chat-is-silent == false) {
-	.o-subs-card {
-		@include oSubsCard;
+.liveAgent {
+    // this element should never be shown
+    // liveAgent js requires the provision of an 'offline' element to set values on
+    // we are working around 3rd party js code with UI opinions
+	.liveAgentOffline {
+		visibility: hidden;
 	}
-
-	.o-subs-card--b2b {
-		@include oSubsCardB2B;
-	}
-
-	.o-subs-card--discount {
-		@include oSubsCardDiscount;
-	}
-
-	// Set to silent again to avoid being output twice
-	$n-live-chat-is-silent: true !global;
 }
