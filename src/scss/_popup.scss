@@ -15,8 +15,6 @@
 /// https://registry.origami.ft.com/components/o-buttons
 /// defaults to b2c
 
-@include nLiveChatPopup();
-
 @mixin nLiveChatPopup(
 	$baseColor: 'org-b2c-dark', 
 	$textColor: 'white',
