@@ -2,7 +2,7 @@
   "name": "@financial-times/n-live-chat",
   "version": "0.0.0",
   "description": "Live chat for FT.com",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Financial-Times/n-live-chat.git"
@@ -26,6 +26,7 @@
     "prepush": "make verify -j3",
     "start": "mkdir -p ./output && node dist/index.js",
     "build": "tsc",
-    "clean": "rm -r ./dist ./output"
+    "clean": "rm -r ./dist ./output",
+    "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg"
   }
 }
