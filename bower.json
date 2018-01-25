@@ -1,19 +1,15 @@
 {
-	"name": "n-live-chat",
-	"homepage": "https://github.com/financial-times/n-live-chat",
-	"description": "Live chat for FT.com",
-	"ignore": [
-	  "**/.*",
-	  "node_modules",
-	  "bower_components",
-	  "test",
-	  "tests"
-	],
-	"dependencies": {
-	  "n-ui-foundations": "^3.0.0",
-	  "o-teaser": "^2.1.15",
-	  "o-labels": "^3.0.2",
-	  "n-image": "^5.0.2"
-	}
+  "name": "n-live-chat",
+  "homepage": "https://github.com/financial-times/n-live-chat",
+  "description": "Live chat for FT.com",
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
+  "dependencies": {
+    "n-sliding-popup": "^2.0.0",
+    "o-buttons": "^5.8.5",
+    "o-colors": "^4.1.5",
+    "o-icons": "^5.6.0",
+    "o-typography": "^5.4.2",
+    "o-visual-effects": "^2.0.3"
+
   }
-  
+}
