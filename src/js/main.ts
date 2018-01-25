@@ -59,16 +59,19 @@ export default class LiveChat {
 			const initLiveChat: Function = () : void => {
 				const online: boolean = this.offlineIndicator.style.display === 'none';
 				if (online) {
-					// callback if an agent is online
-					if(callbacks.online) {
-						callbacks.online();
-					}
-					// callback if the user clicks the start chat button
-					this.button.onclick = () => {
-						if(callbacks.open) {
-							callbacks.open();
+					if(callbacks) {
+						// callback if an agent is online
+						if(callbacks.online) {
+							callbacks.online();
 						}
-					};
+						// callback if the user clicks the start chat button
+						this.button.onclick = () => {
+							if(callbacks.open) {
+								callbacks.open();
+							}
+						};
+					}
+
 					// popup handlers
 					if(this.style === 'popup') {
 						this.container.setAttribute('data-n-sliding-popup-visible', 'true');
@@ -76,7 +79,7 @@ export default class LiveChat {
 						this.closeButton.onclick = () => {
 							this.container.removeAttribute('data-n-sliding-popup-visible');
 							// callback on dismissing the popup
-							if(callbacks.dismiss) {
+							if(callbacks && callbacks.dismiss) {
 								callbacks.dismiss();
 							}
 						};
@@ -84,13 +87,13 @@ export default class LiveChat {
 
 				} else {
 					// callback if all agents are offline
-					if(callbacks.offline) {
+					if(callbacks && callbacks.offline) {
 						callbacks.offline();
 					}
 				}
 			};
 		
-			if(options.displayDelay && options.displayDelay > 0) {
+			if(options && options.displayDelay && options.displayDelay > 0) {
 				setTimeout(initLiveChat, options.displayDelay);
 			} else {
 				initLiveChat();
