@@ -1,0 +1,8 @@
+@import 'n-ui-foundations/main';
+
+$o-buttons-is-silent: false;
+@import 'o-buttons/main';
+
+.o-buttons {
+	@include oTypographySansBold($scale: -1);
+}

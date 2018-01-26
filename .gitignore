@@ -58,3 +58,8 @@ typings/
 .env
 
 dist
+
+/pa11y_screenCapture/*
+.pa11yci.js
+
+public/

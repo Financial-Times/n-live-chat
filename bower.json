@@ -11,8 +11,9 @@
 	],
 	"dependencies": {
 	  "n-ui-foundations": "^3.0.0",
-	  "o-teaser": "^2.1.15",
 	  "o-labels": "^3.0.2",
+	  "o-teaser": "^2.1.15",
+	  "o-typography": "^5.4.2",
 	  "n-image": "^5.0.2"
 	}
   }
