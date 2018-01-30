@@ -11,7 +11,7 @@ build:
 
 build-scss:
 	rm -rf $$TARGET
-	node-sass $$SOURCE $$TARGET --include-path bower_components --include-path node_modules/@financial-times
+	node-sass $$SOURCE $$TARGET --include-path bower_components
 
 demo: build-scss SOURCE=demos/main.scss TARGET=demos/main.css
 	node demos/demo.js
