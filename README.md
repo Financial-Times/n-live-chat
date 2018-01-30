@@ -22,7 +22,7 @@ bower install -S n-live-chat
 
 ```js
 const configObject = {
-  delpoymentId: "string",
+  deploymentId: "string",
   organisationId: "string",
   buttonReference: "string",
   host: "string"
