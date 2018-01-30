@@ -1,0 +1,39 @@
+{
+  "name": "@financial-times/n-live-chat",
+  "version": "0.0.0",
+  "description": "Live chat for FT.com",
+  "main": "dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Financial-Times/n-live-chat.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^9.4.0"
+  },
+  "devDependencies": {
+    "@financial-times/n-gage": "^1.19.3",
+    "@financial-times/n-internal-tool": "^2.2.2",
+    "@types/node-sass": "^3.10.32",
+    "@types/typescript": "^2.0.0",
+    "bower": "^1.8.2",
+    "chai": "^4.1.2",
+    "chalk": "^2.3.0",
+    "mocha": "^5.0.0",
+    "node-sass": "^4.7.2",
+    "typescript": "^2.6.2"
+  },
+  "config": {},
+  "scripts": {
+    "commit": "commit-wizard",
+    "precommit": "node_modules/.bin/secret-squirrel",
+    "prepush": "make verify -j3",
+    "start": "mkdir -p ./output && node dist/index.js",
+    "build": "tsc",
+    "clean": "rm -r ./dist ./output",
+    "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg"
+  },
+  "engines": {
+    "node": "^8.9.4"
+  }
+}

@@ -1,0 +1,10 @@
+<div id="liveAgent" {{#with salesforceConfig}}
+	data-deployment-id="{{{deploymentId}}}"
+	data-organisation-id="{{{organisationId}}}"
+	data-button-reference="{{{buttonReference}}}"
+	data-host="{{{host}}}"
+{{/with}}>
+	{{> (lookup n-live-chat/templates/partials 'style') }}
+	<div id="liveAgentOnlineIndicator"></div>
+	<div id="liveAgentOfflineIndicator"></div>
+</div>

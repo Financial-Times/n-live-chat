@@ -1,0 +1,56 @@
+/// Live chat popup
+///
+/// Outputs the CSS classes for a sliding popup with a live chat link,
+/// absolutely positioned at the bottom right of the page.
+///
+/// @param {String} $baseColor, the background color for the popup
+/// any color name based on o-colors
+/// defaults to org-b2c-dark
+/// http://registry.origami.ft.com/components/o-colors
+/// @param {String} $textColor, the text color for the popup
+/// any color name based on o-colors
+/// defaults to white
+/// @param {String | Map} $theme, any theme name as defined in $o-buttons-themes
+/// (primary, secondary, etc) or a Map defining a custom theme.
+/// https://registry.origami.ft.com/components/o-buttons
+/// defaults to b2c
+
+@mixin nLiveChatPopup(
+	$baseColor: 'org-b2c-dark', 
+	$textColor: 'white',
+	$buttonTheme: 'b2c'
+) {
+	.n-live-agent__popup {
+		@include oVisualEffectsShadowsElevation('high', oColorsGetPaletteColor('black-90'));
+		border: 0;
+		border-radius: 0;
+		margin: 10px;
+		padding: 8px 8px 8px 16px;
+		background-color: oColorsGetPaletteColor($baseColor);
+		left: auto;
+		
+		&-container {
+			display: flex;
+			flex-flow: row wrap-reverse;
+			align-items: center;
+	
+			&--cta {
+				@include oTypographySansBold($scale: 0);
+				color: oColorsGetPaletteColor($textColor);
+				text-align: center;
+			}
+		}
+	
+		&-button {
+			@include oButtons($size: 'default', $theme: $buttonTheme);
+			border-color: oColorsGetPaletteColor($textColor);
+			margin: 5px;
+	
+			&--close {
+				@include oIconsGetIcon('cross', oColorsGetPaletteColor($textColor), 30, $iconset-version: 1);
+				border: 0;
+				background-position-x: left;
+			}
+		}
+	}
+}
