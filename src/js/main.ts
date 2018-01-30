@@ -81,6 +81,7 @@ class LiveChat {
 						}
 					}
 				};
+
 				if(options && options.displayDelay && options.displayDelay > 0) {
 					setTimeout(initLiveChat, options.displayDelay);
 				} else {

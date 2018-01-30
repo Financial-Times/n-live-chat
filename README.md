@@ -44,8 +44,11 @@ const configObject = {
 ### Client-side initialisation
 
 ```js
-// basic setup defaults to popup component with no tracking
-const chatComponent = new LiveChat().init();
+// basic setup for popup component with no tracking
+const popupChatComponent = new LiveChatPopup().init();
+
+// basic setup for inline component with no tracking
+const inlineChatComponent = new LiveChatInline().init();
 ```
 
 ```js
