@@ -11,7 +11,6 @@ const app = module.exports = express({
 	withNavigation: false,
 	withAnonMiddleware: false,
 	hasHeadCss: false,
-	layoutsDir: 'demos/templates',
 	viewsDirectory: '/demos/templates',
 	partialsDirectory: process.cwd(),
 	directory: process.cwd(),
@@ -29,13 +28,12 @@ const salesforceConfig = {
 app.get('/popup', (req, res) => {
 	res.render('demo-popup', {
 		title: 'popup',
-		layout: 'demo-layout',
+		layout: 'wrapper',
 		salesforceConfig
     });
 });
 
 app.get('/inline', (req, res) => {
-	console.log(salesforceConfig);
 	res.render('demo-inline', {
 		title: 'inline',
 		layout: 'wrapper',

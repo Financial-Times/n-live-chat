@@ -15,8 +15,10 @@ demo-build:
 	mkdir bower_components/n-live-chat
 	cp -r templates/ bower_components/n-live-chat/templates/
 	node-sass demos/src/demo.scss public/main.css --include-path bower_components
+	webpack --config demos/webpack.config.js
+	@$(DONE)
 
-demo: demo-build
+demo: build demo-build
 	node demos/app.js
 
 a11y: 
