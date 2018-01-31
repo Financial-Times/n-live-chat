@@ -21,12 +21,12 @@
 	$buttonTheme: 'b2c'
 ) {
 	.n-live-agent__popup {
-		@include oVisualEffectsShadowsElevation('high', getColor('black-90'));
+		@include oVisualEffectsShadowsElevation('high', oColorsGetPaletteColor('black-90'));
 		border: 0;
 		border-radius: 0;
 		margin: 10px;
 		padding: 8px 8px 8px 16px;
-		background-color: getColor($baseColor);
+		background-color: oColorsGetPaletteColor($baseColor);
 	
 		&-container {
 			display: flex;

@@ -21,14 +21,14 @@ const app = module.exports = express({
 
 app.get('/popup', (req, res) => {
 	res.render('demo-popup', Object.assign({
-    title: 'Popup Demo',
+    title: 'popup',
     layout: 'demo-layout'
     }));
 });
 
 app.get('/inline', (req, res) => {
 	res.render('demo-inline', Object.assign({
-    title: 'Inline Demo',
+    title: 'inline',
     layout: 'demo-layout'
     }));
 });

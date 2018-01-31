@@ -1,8 +1,5 @@
 @import 'n-ui-foundations/main';
+@import '../../main';
 
-$o-buttons-is-silent: false;
-@import 'o-buttons/main';
-
-.o-buttons {
-	@include oTypographySansBold($scale: -1);
-}
+@include nLiveChatInline();
+@include nLiveChatPopup();
