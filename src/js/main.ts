@@ -66,18 +66,19 @@ class LiveChat {
 						if(callbacks && callbacks.online) {
 							callbacks.online();
 						}
-						// callback if the user clicks the start chat button
-						this.button.onclick = () => {
-							liveagent.startChat(this.config.buttonReference);
-							if(callbacks && callbacks.open) {
-								callbacks.open();
-							}
-						};
 						
 						// initializer callback
 						if(onInit) {
 							onInit();
 						}
+
+						this.button.onclick = () => {
+							liveagent.startChat(this.config.buttonReference);
+							// callback if the user clicks the start chat button
+							if(callbacks && callbacks.open) {
+								callbacks.open();
+							}
+						};
 					} else {
 						console.log('is offline');
 						// callback if all agents are offline
