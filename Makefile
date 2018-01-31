@@ -11,16 +11,14 @@ build:
 	tsc
 
 demo-build:
-	@rm -rf bower_components/n-live-chat
-	@mkdir bower_components/n-live-chat
-	@cp -r templates/ bower_components/n-live-chat/templates/
-	@node-sass demos/src/demo.scss public/main.css --include-path bower_components
-	@$(DONE)
+	rm -rf bower_components/n-live-chat
+	mkdir bower_components/n-live-chat
+	cp -r templates/ bower_components/n-live-chat/templates/
+	node-sass demos/src/demo.scss public/main.css --include-path bower_components
 
 demo: demo-build
 	node demos/app.js
 
 a11y: 
-	@node .pa11yci.js
-	@PA11Y=true node demos/app
-	@$(DONE)
+	node .pa11yci.js
+	PA11Y=true node demos/app
