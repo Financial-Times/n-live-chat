@@ -22,7 +22,6 @@ bower install -S n-live-chat
 
 ```js
 const configObject = {
-
   deploymentId: "string",
   organisationId: "string",
   buttonReference: "string",
@@ -45,7 +44,6 @@ const configObject = {
 ### Client-side initialisation
 
 ```js
-
 // basic setup for popup component with no tracking
 const popupChatComponent = new LiveChatPopup().init();
 

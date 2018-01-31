@@ -1,7 +1,7 @@
 @mixin nLiveChatInline(
 	$baseColor: 'org-b2c-dark', 
-    $textColor: 'black',
-    $ctaTextColor: 'white',
+	$textColor: 'black',
+	$ctaTextColor: 'white',
 	$buttonTheme: 'b2c'
 ) {
 	.n-live-agent__inline {
