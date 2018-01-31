@@ -75,5 +75,5 @@ const options = {
   displayDelay: 10000
 };
 
-const chatComponent = new LiveChat("popup").init(callbacks, options);
+const chatComponent = new LiveChatPopup().init(callbacks, options);
 ```
