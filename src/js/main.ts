@@ -1,7 +1,8 @@
 declare let liveagent: any;
-// declare let _laq: any;
 declare global {
-    interface Window { _laq: any; }
+	interface Window {
+		_laq: any;
+	}
 }
 interface SalesforceConfig extends DOMStringMap {
 	deploymentId: string;
@@ -19,6 +20,7 @@ interface LiveChatCallbacks {
 
 interface LiveChatOptions {
 	displayDelay?: number;
+	demoMode?: string;
 }
 
 class LiveChat {
@@ -36,7 +38,6 @@ class LiveChat {
 		this.config = this.container.dataset as SalesforceConfig;
 
 		window._laq = window._laq || [];
-
 		window._laq.push(() => {
 			liveagent.showWhenOnline(this.config.buttonReference, this.onlineIndicator);
 			liveagent.showWhenOffline(this.config.buttonReference, this.offlineIndicator);
@@ -54,24 +55,20 @@ class LiveChat {
 					this.config.deploymentId, 
 					this.config.organisationId
 				);
-	
-				console.log(window._laq, liveagent);
+
+				const { demoMode = false, displayDelay = 1000} = options || {};
 
 				const initLiveChat: Function = () : void => {
 					const online: boolean = this.offlineIndicator.style.display === 'none';
-					if (online) {
-						console.log('is online');
-
+					if (online || demoMode === 'online') {
 						// callback if an agent is online
 						if(callbacks && callbacks.online) {
 							callbacks.online();
 						}
-						
 						// initializer callback
 						if(onInit) {
 							onInit();
 						}
-
 						this.button.onclick = () => {
 							liveagent.startChat(this.config.buttonReference);
 							// callback if the user clicks the start chat button
@@ -80,19 +77,13 @@ class LiveChat {
 							}
 						};
 					} else {
-						console.log('is offline');
 						// callback if all agents are offline
 						if(callbacks && callbacks.offline) {
 							callbacks.offline();
 						}
 					}
 				};
-
-				if(options && options.displayDelay && options.displayDelay > 0) {
-					setTimeout(initLiveChat, options.displayDelay);
-				} else {
-					initLiveChat();
-				}
+				setTimeout(initLiveChat, displayDelay > 1000 ? displayDelay : 2000);
 			};
 			document.head.appendChild(script);
 		}
