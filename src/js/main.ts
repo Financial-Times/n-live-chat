@@ -34,7 +34,7 @@ class LiveChat {
 		this.onlineIndicator = document.getElementById('liveAgentOnlineIndicator') as HTMLDivElement;
 		this.offlineIndicator = document.getElementById('liveAgentOfflineIndicator') as HTMLDivElement;
 		this.config = this.container.dataset as SalesforceConfig;
-		
+
 		window._laq = window._laq || [];
 
 		window._laq.push(() => {
@@ -54,23 +54,26 @@ class LiveChat {
 					this.config.deploymentId, 
 					this.config.organisationId
 				);
+	
+				console.log(window._laq, liveagent);
 
 				const initLiveChat: Function = () : void => {
 					const online: boolean = this.offlineIndicator.style.display === 'none';
 					if (online) {
 						console.log('is online');
-						if(callbacks) {
-							// callback if an agent is online
-							if(callbacks.online) {
-								callbacks.online();
-							}
-							// callback if the user clicks the start chat button
-							this.button.onclick = () => {
-								if(callbacks.open) {
-									callbacks.open();
-								}
-							};
+
+						// callback if an agent is online
+						if(callbacks && callbacks.online) {
+							callbacks.online();
 						}
+						// callback if the user clicks the start chat button
+						this.button.onclick = () => {
+							liveagent.startChat(this.config.buttonReference);
+							if(callbacks && callbacks.open) {
+								callbacks.open();
+							}
+						};
+						
 						// initializer callback
 						if(onInit) {
 							onInit();
