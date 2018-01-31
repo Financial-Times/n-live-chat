@@ -1,0 +1,17 @@
+@mixin nLiveChatInline(
+	$buttonTheme: 'b2c'
+) {
+	.n-live-agent__inline {
+        margin-top: 8px;
+        
+        &-message {
+            @include oTypographySans($scale: 0);
+        }
+
+        &-button {
+            @include oButtons($size: 'default', $theme: $buttonTheme);
+        }
+	
+    }
+
+}

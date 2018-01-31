@@ -4,7 +4,7 @@
 	data-button-reference="{{{buttonReference}}}"
 	data-host="{{{host}}}"
 {{/with}}>
-	{{> (lookup n-live-chat/templates/partials 'style') }}
+	{{{usePartial style path='n-live-chat/templates/partials'}}}
 	<div id="liveAgentOnlineIndicator"></div>
 	<div id="liveAgentOfflineIndicator"></div>
 </div>

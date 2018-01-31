@@ -4,14 +4,21 @@ node_modules/@financial-times/n-gage/index.mk:
 
 -include node_modules/@financial-times/n-gage/index.mk
 
-IGNORE_A11Y = true;
+# contrast error in popup demo
+IGNORE_A11Y = true; 
 
 build:
 	tsc
 
-build-scss:
-	rm -rf $$TARGET
-	node-sass $$SOURCE $$TARGET --include-path bower_components
+demo-build:
+	rm -rf bower_components/n-live-chat
+	mkdir bower_components/n-live-chat
+	cp -r templates/ bower_components/n-live-chat/templates/
+	node-sass demos/src/demo.scss public/main.css --include-path bower_components
 
-demo: build-scss SOURCE=demos/main.scss TARGET=demos/main.css
-	node demos/demo.js
+demo: demo-build
+	node demos/app.js
+
+a11y: 
+	node .pa11yci.js
+	PA11Y=true node demos/app
