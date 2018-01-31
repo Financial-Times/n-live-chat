@@ -56,7 +56,7 @@ class LiveChat {
 					this.config.organisationId
 				);
 
-				const { demoMode = false, displayDelay = 1000} = options || {};
+				const { demoMode = false, displayDelay = 1000 } = options || {};
 
 				const initLiveChat: Function = () : void => {
 					const online: boolean = this.offlineIndicator.style.display === 'none';
@@ -83,7 +83,7 @@ class LiveChat {
 						}
 					}
 				};
-				setTimeout(initLiveChat, displayDelay > 1000 ? displayDelay : 2000);
+				setTimeout(initLiveChat, displayDelay > 1000 ? displayDelay : 1000);
 			};
 			document.head.appendChild(script);
 		}
