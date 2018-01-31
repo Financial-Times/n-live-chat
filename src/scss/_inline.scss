@@ -5,17 +5,17 @@
 	$buttonTheme: 'b2c'
 ) {
 	.n-live-agent__inline {
-        @include oTypographySans($scale: 0);
-        color: oColorsGetPaletteColor($textColor);
-        max-width: 270px;
         margin-top: 8px;
+        
+        &-message {
+            @include oTypographySans($scale: 0);
+            color: oColorsGetPaletteColor($textColor);
+        }
 
         &-button {
             @include oButtons($size: 'default', $theme: $buttonTheme);
-            @include oTypographySansBold($scale: -1);
             color: oColorsGetPaletteColor($ctaTextColor);
             border-color: oColorsGetPaletteColor($ctaTextColor);
-            width: 80px;
         }
 	
     }
