@@ -27,7 +27,8 @@
 		margin: 10px;
 		padding: 8px 8px 8px 16px;
 		background-color: oColorsGetPaletteColor($baseColor);
-	
+		left: auto;
+
 		&-container {
 			display: flex;
 			flex-flow: row wrap-reverse;
@@ -52,10 +53,4 @@
 			}
 		}
 	}
-	
-	@media (max-width: 46.24em) {
-		.n-live-agent__popup {
-			left: auto;
-		}
-	}	
 }

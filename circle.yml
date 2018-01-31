@@ -1,0 +1,13 @@
+machine:
+  node:
+    version: 8.9.4
+
+dependencies:
+  override:
+    - make install
+compile:
+  override:
+    - make build
+test:
+  override:
+    - make test
