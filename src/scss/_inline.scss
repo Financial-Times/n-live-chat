@@ -1,7 +1,4 @@
 @mixin nLiveChatInline(
-	$baseColor: 'org-b2c-dark', 
-	$textColor: 'black',
-	$ctaTextColor: 'white',
 	$buttonTheme: 'b2c'
 ) {
 	.n-live-agent__inline {
@@ -9,13 +6,10 @@
         
         &-message {
             @include oTypographySans($scale: 0);
-            color: oColorsGetPaletteColor($textColor);
         }
 
         &-button {
             @include oButtons($size: 'default', $theme: $buttonTheme);
-            color: oColorsGetPaletteColor($ctaTextColor);
-            border-color: oColorsGetPaletteColor($ctaTextColor);
         }
 	
     }
