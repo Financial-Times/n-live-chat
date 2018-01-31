@@ -2,7 +2,7 @@ declare let liveagent: any;
 declare let _laq: any;
 
 interface SalesforceConfig extends DOMStringMap {
-	delpoymentId: string;
+	deploymentId: string;
 	organisationId: string;
 	buttonReference: string;
 	host: string;
