@@ -1,6 +1,8 @@
 declare let liveagent: any;
-declare let _laq: any;
-
+// declare let _laq: any;
+declare global {
+    interface Window { _laq: any; }
+}
 interface SalesforceConfig extends DOMStringMap {
 	deploymentId: string;
 	organisationId: string;
@@ -33,11 +35,9 @@ class LiveChat {
 		this.offlineIndicator = document.getElementById('liveAgentOfflineIndicator') as HTMLDivElement;
 		this.config = this.container.dataset as SalesforceConfig;
 		
-		if (!_laq) { 
-			_laq = [];
-		}
+		window._laq = window._laq || [];
 
-		_laq.push(() => {
+		window._laq.push(() => {
 			liveagent.showWhenOnline(this.config.buttonReference, this.onlineIndicator);
 			liveagent.showWhenOffline(this.config.buttonReference, this.offlineIndicator);
 		});
@@ -58,6 +58,7 @@ class LiveChat {
 				const initLiveChat: Function = () : void => {
 					const online: boolean = this.offlineIndicator.style.display === 'none';
 					if (online) {
+						console.log('is online');
 						if(callbacks) {
 							// callback if an agent is online
 							if(callbacks.online) {
@@ -75,6 +76,7 @@ class LiveChat {
 							onInit();
 						}
 					} else {
+						console.log('is offline');
 						// callback if all agents are offline
 						if(callbacks && callbacks.offline) {
 							callbacks.offline();
