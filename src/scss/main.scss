@@ -5,12 +5,3 @@
 @import 'o-visual-effects/main';
 @import 'n-sliding-popup/main';
 @import 'mixins';
-
-.liveAgent {
-    // this element should never be shown
-    // liveAgent js requires the provision of an 'offline' element to set values on
-    // we are working around 3rd party js code with UI opinions
-	.liveAgentOffline {
-		visibility: hidden;
-	}
-}

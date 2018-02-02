@@ -11,7 +11,6 @@ const app = module.exports = express({
 	withNavigation: false,
 	withAnonMiddleware: false,
 	hasHeadCss: false,
-	layoutsDir: 'demos/templates',
 	viewsDirectory: '/demos/templates',
 	partialsDirectory: process.cwd(),
 	directory: process.cwd(),
@@ -19,18 +18,27 @@ const app = module.exports = express({
 	s3o: false
 });
 
+const salesforceConfig = {
+	deploymentId: process.env.SALESFORCE_DEPLOYMENT_ID,
+	organisationId: process.env.SALESFORCE_ORGANISATION_ID,
+	buttonReference: process.env.SALESFORCE_BUTTON_REFERENCE,
+	host: process.env.SALESFORCE_HOST
+};
+
 app.get('/popup', (req, res) => {
-	res.render('demo-popup', Object.assign({
-    title: 'popup',
-    layout: 'demo-layout'
-    }));
+	res.render('demo-popup', {
+		title: 'popup',
+		layout: 'wrapper',
+		salesforceConfig
+    });
 });
 
 app.get('/inline', (req, res) => {
-	res.render('demo-inline', Object.assign({
-    title: 'inline',
-    layout: 'demo-layout'
-    }));
+	res.render('demo-inline', {
+		title: 'inline',
+		layout: 'wrapper',
+		salesforceConfig
+    });
 });
 
 function runPa11yTests () {

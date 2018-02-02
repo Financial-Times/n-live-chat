@@ -1,5 +1,11 @@
 @import 'n-ui-foundations/main';
 @import '../../main';
 
+.demo-header {
+	@include oTypographySansBold($scale: 4);
+	border-bottom: 5px solid getColor('black-70');
+	margin-bottom: 3em;
+}
+
 @include nLiveChatInline();
 @include nLiveChatPopup();

@@ -41,14 +41,20 @@ const configObject = {
 @include nLiveChatPopup();
 ```
 
+#### Inline component
+
+```scss
+@include nLiveChatInline();
+```
+
 ### Client-side initialisation
 
 ```js
 // basic setup for popup component with no tracking
-const popupChatComponent = new LiveChatPopup().init();
+new LiveChatPopup().init();
 
 // basic setup for inline component with no tracking
-const inlineChatComponent = new LiveChatInline().init();
+new LiveChatInline().init();
 ```
 
 ```js
@@ -72,8 +78,18 @@ const callbacks = {
 
 const options = {
   // wait 10 seconds before initialising component
+  // (defaults to 1 second)
   displayDelay: 10000
 };
 
-const chatComponent = new LiveChat("popup").init(callbacks, options);
+new LiveChatPopup().init(callbacks, options);
 ```
+
+### Demos
+
+```sh
+make install .env demo
+```
+
+- [Inline component demo](http://localhost:5005/inline)
+- [Popup component demo](http://localhost:5005/popup)

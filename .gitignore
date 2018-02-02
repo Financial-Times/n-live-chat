@@ -55,7 +55,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+*.env*
 
 dist
 
@@ -63,3 +63,4 @@ dist
 .pa11yci.js
 
 public/
+package-lock.json

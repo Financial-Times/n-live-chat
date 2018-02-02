@@ -1,6 +1,9 @@
 declare let liveagent: any;
-declare let _laq: any;
-
+declare global {
+	interface Window {
+		_laq: any;
+	}
+}
 interface SalesforceConfig extends DOMStringMap {
 	deploymentId: string;
 	organisationId: string;
@@ -17,6 +20,7 @@ interface LiveChatCallbacks {
 
 interface LiveChatOptions {
 	displayDelay?: number;
+	demoMode?: string;
 }
 
 class LiveChat {
@@ -32,12 +36,9 @@ class LiveChat {
 		this.onlineIndicator = document.getElementById('liveAgentOnlineIndicator') as HTMLDivElement;
 		this.offlineIndicator = document.getElementById('liveAgentOfflineIndicator') as HTMLDivElement;
 		this.config = this.container.dataset as SalesforceConfig;
-		
-		if (!_laq) { 
-			_laq = [];
-		}
 
-		_laq.push(() => {
+		window._laq = window._laq || [];
+		window._laq.push(() => {
 			liveagent.showWhenOnline(this.config.buttonReference, this.onlineIndicator);
 			liveagent.showWhenOffline(this.config.buttonReference, this.offlineIndicator);
 		});
@@ -55,25 +56,26 @@ class LiveChat {
 					this.config.organisationId
 				);
 
+				const { demoMode = false, displayDelay = 1000 } = options || {};
+
 				const initLiveChat: Function = () : void => {
 					const online: boolean = this.offlineIndicator.style.display === 'none';
-					if (online) {
-						if(callbacks) {
-							// callback if an agent is online
-							if(callbacks.online) {
-								callbacks.online();
-							}
-							// callback if the user clicks the start chat button
-							this.button.onclick = () => {
-								if(callbacks.open) {
-									callbacks.open();
-								}
-							};
+					if (online || demoMode === 'online') {
+						// callback if an agent is online
+						if(callbacks && callbacks.online) {
+							callbacks.online();
 						}
 						// initializer callback
 						if(onInit) {
 							onInit();
 						}
+						this.button.onclick = () => {
+							liveagent.startChat(this.config.buttonReference);
+							// callback if the user clicks the start chat button
+							if(callbacks && callbacks.open) {
+								callbacks.open();
+							}
+						};
 					} else {
 						// callback if all agents are offline
 						if(callbacks && callbacks.offline) {
@@ -81,12 +83,7 @@ class LiveChat {
 						}
 					}
 				};
-
-				if(options && options.displayDelay && options.displayDelay > 0) {
-					setTimeout(initLiveChat, options.displayDelay);
-				} else {
-					initLiveChat();
-				}
+				setTimeout(initLiveChat, displayDelay > 1000 ? displayDelay : 1000);
 			};
 			document.head.appendChild(script);
 		}
