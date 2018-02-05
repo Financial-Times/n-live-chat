@@ -10,7 +10,9 @@ IGNORE_A11Y = true;
 build:
 	tsc
 
-demo-build:
+build-production: build
+
+build-demo: build
 	rm -rf bower_components/n-live-chat
 	mkdir bower_components/n-live-chat
 	cp -r templates/ bower_components/n-live-chat/templates/
@@ -18,7 +20,7 @@ demo-build:
 	webpack --config demos/webpack.config.js
 	@$(DONE)
 
-demo: build demo-build
+demo: build-demo
 	node demos/app.js
 
 a11y: 
