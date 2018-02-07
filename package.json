@@ -15,6 +15,7 @@
     "@financial-times/n-gage": "^1.19.3",
     "@financial-times/n-internal-tool": "^2.2.2",
     "@types/babel-core": "^6.25.3",
+    "@types/chalk": "^2.2.0",
     "@types/node-sass": "^3.10.32",
     "@types/typescript": "^2.0.0",
     "@types/webpack": "^3.8.4",
