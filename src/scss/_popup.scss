@@ -28,18 +28,16 @@
 		padding: 8px 8px 8px 16px;
 		background-color: oColorsGetPaletteColor($baseColor);
 		left: auto;
-	
-		&-container {
-			display: flex;
-			flex-flow: row wrap-reverse;
-			align-items: center;
-	
-			&--cta {
-				@include oTypographySansBold($scale: 0);
-				color: oColorsGetPaletteColor($textColor);
-				text-align: center;
-			}
+		display: flex;
+		flex-flow: row wrap-reverse;
+		align-items: center;
+
+		&-cta {
+			@include oTypographySansBold($scale: 0);
+			color: oColorsGetPaletteColor($textColor);
+			text-align: center;
 		}
+
 	
 		&-button {
 			@include oButtons($size: 'default', $theme: $buttonTheme);

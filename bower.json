@@ -1,8 +1,10 @@
 {
   "name": "n-live-chat",
+  "main": ["main.scss"],
   "homepage": "https://github.com/financial-times/n-live-chat",
   "description": "Live chat for FT.com",
   "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
+  "license": "ISC",
   "dependencies": {
     "n-sliding-popup": "^2.0.0",
     "n-ui-foundations": "^3.0.0",

@@ -10,7 +10,9 @@ IGNORE_A11Y = true;
 build:
 	tsc
 
-demo-build:
+build-production: build
+
+build-demo: build
 	rm -rf bower_components/n-live-chat
 	mkdir bower_components/n-live-chat
 	cp -r templates/ bower_components/n-live-chat/templates/
