@@ -1,11 +1,12 @@
-import express from '@financial-times/n-internal-tool';
+import { Application } from 'express';
+import * as express from '@financial-times/n-internal-tool';
 import * as chalk from 'chalk';
 
 const errorHighlight = chalk.default.bold.red;
 const highlight = chalk.default.bold.green;
 const defaultLayout = 'wrapper';
 
-const app = module.exports = express({
+const app = express({
 	name: 'public',
 	systemCode: 'n-live-chat-demo',
 	withFlags: false,
@@ -18,40 +19,26 @@ const app = module.exports = express({
 	directory: process.cwd(),
 	demo: true,
 	s3o: false
-});
+}) as Application;
 
 interface SalesforceConfig {
-	deploymentId: string;
-	organisationId: string;
-	buttonReference: string;
-	host: string;
+	deploymentId: string | undefined;
+	organisationId: string | undefined;
+	buttonReference: string | undefined;
+	host: string | undefined;
 }
 
-let salesforceConfig: SalesforceConfig = {
+const salesforceConfig: SalesforceConfig = {
 	deploymentId: process.env.SALESFORCE_DEPLOYMENT_ID,
 	organisationId: process.env.SALESFORCE_ORGANISATION_ID,
 	buttonReference: process.env.SALESFORCE_BUTTON_REFERENCE,
 	host: process.env.SALESFORCE_HOST
 }
 
-// salesforceConfig.deploymentId = process.env.SALESFORCE_DEPLOYMENT_ID;
-// salesforceConfig.organisationId = process.env.SALESFORCE_ORGANISATION_ID;
-// salesforceConfig.buttonReference = process.env.SALESFORCE_BUTTON_REFERENCE;
-// salesforceConfig.host = process.env.SALESFORCE_HOST;
-
-
-
-// interface renderApp(demoType: string, config: salesforceConfig)
-
-const renderApp = (demoType: string, config: SalesforceConfig) => {
-
-};
-
-
 app.get('/popup', (req, res) => {
 	res.render('demo-popup', {
 		title: 'popup',
-		layout: 'wrapper',
+		layout: defaultLayout,
 		salesforceConfig
     });
 });
@@ -59,7 +46,7 @@ app.get('/popup', (req, res) => {
 app.get('/inline', (req, res) => {
 	res.render('demo-inline', {
 		title: 'inline',
-		layout: 'wrapper',
+		layout: defaultLayout,
 		salesforceConfig
     });
 });
@@ -69,11 +56,9 @@ function runPa11yTests () {
 	const pa11y = spawn('pa11y-ci');
 
 	pa11y.stdout.on('data', (data: any) => {
-		console.log(highlight(`${data}`)); //eslint-disable-line
 	});
 
 	pa11y.stderr.on('data', (error: string) => {
-		console.log(errorHighlight(`${error}`)); //eslint-disable-line
 	});
 
 	pa11y.on('close', (code: number) => {
@@ -86,3 +71,5 @@ const listen = app.listen(5005);
 if (process.env.PA11Y === 'true') {
 	listen.then(runPa11yTests);
 }
+
+export default app;

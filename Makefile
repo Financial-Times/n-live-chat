@@ -19,8 +19,7 @@ demo-build:
 	@$(DONE)
 
 demo: build demo-build
-	node src/js/demos-app.ts
-	# node demos/app.js
+	node dist/demos-app
 
 a11y: 
 	node .pa11yci.js
