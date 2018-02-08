@@ -55,10 +55,12 @@ function runPa11yTests () {
 	const spawn = require('child_process').spawn;
 	const pa11y = spawn('pa11y-ci');
 
-	pa11y.stdout.on('data', (data: any) => {
+	pa11y.stdout.on('data', (data: Object) => {
+		console.log(highlight(`${data}`)); //eslint-disable-line
 	});
 
-	pa11y.stderr.on('data', (error: string) => {
+	pa11y.stderr.on('data', (error: Object) => {
+		console.log(errorHighlight(`${error}`)); //eslint-disable-line
 	});
 
 	pa11y.on('close', (code: number) => {
@@ -66,10 +68,10 @@ function runPa11yTests () {
 	});
 }
 
-const listen = app.listen(5005);
+const server = app.listen(5005);
 
 if (process.env.PA11Y === 'true') {
-	listen.then(runPa11yTests);
+	server.on("listening", runPa11yTests);
 }
-
+ 
 export default app;
