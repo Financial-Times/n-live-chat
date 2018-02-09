@@ -1,10 +1,17 @@
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
+import { Server } from 'http';
 import * as express from '@financial-times/n-internal-tool';
 import * as chalk from 'chalk';
 
 const errorHighlight = chalk.default.bold.red;
 const highlight = chalk.default.bold.green;
 const defaultLayout = 'wrapper';
+
+// HACK because the n-express version of app.listen promisifies the 'Server' type response
+// @ts-ignore
+interface nInternalTool extends Application {
+    listen(port: number, callback?: Function): Promise<Server>;
+}
 
 const app = express({
 	name: 'public',
@@ -19,7 +26,7 @@ const app = express({
 	directory: process.cwd(),
 	demo: true,
 	s3o: false
-}) as Application;
+}) as nInternalTool;
 
 interface SalesforceConfig {
 	deploymentId: string | undefined;
@@ -35,23 +42,18 @@ const salesforceConfig: SalesforceConfig = {
 	host: process.env.SALESFORCE_HOST
 }
 
-app.get('/popup', (req, res) => {
-	res.render('demo-popup', {
-		title: 'popup',
+const render = (type: string) => (req: Request, res: Response) => {
+	res.render(`demo-${type}`, {
+		title: type,
 		layout: defaultLayout,
 		salesforceConfig
     });
-});
+};
 
-app.get('/inline', (req, res) => {
-	res.render('demo-inline', {
-		title: 'inline',
-		layout: defaultLayout,
-		salesforceConfig
-    });
-});
+app.get('/popup', render('popup'));
+app.get('/inline', render('inline'));
 
-function runPa11yTests () {
+function runPa11yTests () { 
 	const spawn = require('child_process').spawn;
 	const pa11y = spawn('pa11y-ci');
 
@@ -71,7 +73,7 @@ function runPa11yTests () {
 const server = app.listen(5005);
 
 if (process.env.PA11Y === 'true') {
-	server.on("listening", runPa11yTests);
+	server.then(runPa11yTests);
 }
- 
+
 export default app;
