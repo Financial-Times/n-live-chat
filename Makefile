@@ -4,9 +4,6 @@ node_modules/@financial-times/n-gage/index.mk:
 
 -include node_modules/@financial-times/n-gage/index.mk
 
-# contrast error in popup demo
-IGNORE_A11Y = true; 
-
 build:
 	tsc
 
@@ -20,9 +17,9 @@ build-demo: build
 	webpack --config demos/webpack.config.js
 	@$(DONE)
 
-demo: build-demo
-	node demos/app.js
+demo: build build-demo
+	node dist/demos-app
 
 a11y: 
 	node .pa11yci.js
-	PA11Y=true node demos/app
+	PA11Y=true node dist/demos-app
