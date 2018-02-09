@@ -21,6 +21,5 @@ demo: build build-demo
 	node dist/demos-app
 
 a11y: 
-	tsc
 	node .pa11yci.js
 	PA11Y=true node dist/demos-app
