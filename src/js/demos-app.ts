@@ -7,7 +7,8 @@ const errorHighlight = chalk.default.bold.red;
 const highlight = chalk.default.bold.green;
 const defaultLayout = 'wrapper';
 
-// HACK because the n-express version of app.listen promisifies the 'Server' type response
+// HACK because the n-express version of `app.listen` promisifies the 'Server' type response
+// Next line to suppress a 'not assignable to type Server' error
 // @ts-ignore
 interface nInternalTool extends Application {
     listen(port: number, callback?: Function): Promise<Server>;
