@@ -24,7 +24,7 @@ build-demo:
 	node-sass demos/scss/demo.scss public/main.css --include-path bower_components
 	@$(DONE)
 
-demo: .env build-demo
+demo: build-demo
 	node public/app
 
 a11y: demo
