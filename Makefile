@@ -27,7 +27,7 @@ build-demo:
 demo: build-demo
 	node public/app
 
-a11y: demo
+a11y: build-demo
 	@node .pa11yci.js
 	@PA11Y=true node public/app
 	@$(DONE)
