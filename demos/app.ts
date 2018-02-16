@@ -3,11 +3,9 @@ import { Server } from 'http';
 import * as express from '@financial-times/n-internal-tool';
 import * as chalk from 'chalk';
 
-const errorHighlight = chalk.default.bold.red;
-const highlight = chalk.default.bold.green;
-const defaultLayout = 'wrapper';
+const { red: errorHighlight, green: highlight } = chalk.default.bold;
 
-// HACK because the n-express version of `app.listen` promisifies the 'Server' type response
+// HACK: because the n-express version of `app.listen` promisifies the 'Server' type response
 // Next line to suppress a 'not assignable to type Server' error
 // @ts-ignore
 interface nInternalTool extends Application {
@@ -17,12 +15,8 @@ interface nInternalTool extends Application {
 const app = express({
 	name: 'public',
 	systemCode: 'n-live-chat-demo',
-	withFlags: false,
-	withHandlebars: true,
-	withNavigation: false,
-	withAnonMiddleware: false,
-	hasHeadCss: false,
-	viewsDirectory: '/demos/templates',
+	defaultLayout: 'wrapper',
+	viewsDirectory: '/demos/views',
 	partialsDirectory: process.cwd(),
 	directory: process.cwd(),
 	demo: true,
@@ -30,10 +24,10 @@ const app = express({
 }) as nInternalTool;
 
 interface SalesforceConfig {
-	deploymentId: string | undefined;
-	organisationId: string | undefined;
-	buttonReference: string | undefined;
-	host: string | undefined;
+	deploymentId?: string;
+	organisationId?: string;
+	buttonReference?: string;
+	host?: string;
 }
 
 const salesforceConfig: SalesforceConfig = {
@@ -43,10 +37,9 @@ const salesforceConfig: SalesforceConfig = {
 	host: process.env.SALESFORCE_HOST
 }
 
-const render = (type: string) => (req: Request, res: Response) => {
-	res.render(`demo-${type}`, {
-		title: type,
-		layout: defaultLayout,
+const render = (title: string) => (req: Request, res: Response) => {
+	res.render(`demo-${title}`, {
+		title,
 		salesforceConfig
     });
 };
@@ -54,7 +47,7 @@ const render = (type: string) => (req: Request, res: Response) => {
 app.get('/popup', render('popup'));
 app.get('/inline', render('inline'));
 
-function runPa11yTests () { 
+function runPa11yTests (): void { 
 	const spawn = require('child_process').spawn;
 	const pa11y = spawn('pa11y-ci');
 

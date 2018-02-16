@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+	"outDir": "../public",
+	"rootDirs": ["./client", "../src/js"],                   
+	"removeComments": true,                   
+	"strict": true,		                     
+	"noImplicitAny": true
+  },
+  "files": [
+	  "client/demo.ts"
+  ]
+}

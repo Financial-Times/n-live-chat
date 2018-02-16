@@ -1,0 +1,12 @@
+{
+  "exclude": ["client"],
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "outDir": "../public",
+    "rootDir": "./",
+    "removeComments": true,
+    "strict": true,
+    "noImplicitAny": true
+  }
+}

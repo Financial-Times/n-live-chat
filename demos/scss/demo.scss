@@ -1,5 +1,5 @@
 @import 'n-ui-foundations/main';
-@import '../../main';
+@import '../../main.scss';
 
 .demo-header {
 	@include oTypographySansBold($scale: 4);
