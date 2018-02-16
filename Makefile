@@ -32,5 +32,4 @@ a11y: demo
 	@PA11Y=true node public/app
 	@$(DONE)
 
-test: verify unit-test
-	make a11y
+test: verify a11y
