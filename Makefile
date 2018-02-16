@@ -11,21 +11,26 @@ build:
 build-production: build
 
 build-demo:
+	# transpiling demo app
 	rm -rf public
 	tsc --p demos/tsconfig.server.json
 	tsc --p demos/tsconfig.client.json
-	
-	
+	webpack --config demos/webpack.config.js
+	# copying views
 	rm -rf bower_components/n-live-chat
 	mkdir bower_components/n-live-chat
-	webpack --config demos/webpack.config.js
 	cp -r templates/ bower_components/n-live-chat/templates/
+	# building styles
 	node-sass demos/scss/demo.scss public/main.css --include-path bower_components
 	@$(DONE)
 
-demo: build .env build-demo
+demo: .env build-demo
 	node public/app
 
-a11y: 
-	node .pa11yci.js
-	PA11Y=true node public/app
+a11y: demo
+	@node .pa11yci.js
+	@PA11Y=true node public/app
+	@$(DONE)
+
+test: verify unit-test
+	make a11y
