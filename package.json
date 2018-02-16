@@ -9,7 +9,7 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@financial-times/n-gage": "^1.19.6",
+    "@financial-times/n-gage": "^1.19.7",
     "@financial-times/n-internal-tool": "^2.2.3",
     "@types/chalk": "^2.2.0",
     "@types/express": "^4.11.1",
