@@ -5,13 +5,6 @@ import * as chalk from 'chalk';
 
 const { red: errorHighlight, green: highlight } = chalk.default.bold;
 
-// HACK: because the n-express version of `app.listen` promisifies the 'Server' type response
-// Next line to suppress a 'not assignable to type Server' error
-// @ts-ignore
-interface nInternalTool extends Application {
-    listen(port: number, callback?: Function): Promise<Server>;
-}
-
 const app = express({
 	name: 'public',
 	systemCode: 'n-live-chat-demo',
@@ -21,7 +14,7 @@ const app = express({
 	directory: process.cwd(),
 	demo: true,
 	s3o: false
-}) as nInternalTool;
+}) as Application;
 
 interface SalesforceConfig {
 	deploymentId?: string;
@@ -37,12 +30,11 @@ const salesforceConfig: SalesforceConfig = {
 	host: process.env.SALESFORCE_HOST
 }
 
-const render = (title: string) => (req: Request, res: Response) => {
+const render = (title: string) => (req: Request, res: Response): void => 
 	res.render(`demo-${title}`, {
 		title,
 		salesforceConfig
     });
-};
 
 app.get('/popup', render('popup'));
 app.get('/inline', render('inline'));
@@ -64,10 +56,10 @@ function runPa11yTests (): void {
 	});
 }
 
-const server = app.listen(5005);
-
-if (process.env.PA11Y === 'true') {
-	server.then(runPa11yTests);
-}
+const server = app.listen(5005, () => {
+	if (process.env.PA11Y === 'true') {
+		runPa11yTests();
+	}	
+});
 
 export default app;
