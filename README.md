@@ -40,12 +40,16 @@ const configObject = {
 ```scss
 @include nLiveChatPopup();
 ```
+![Popup chat component](https://user-images.githubusercontent.com/12828487/36374208-73719b28-1562-11e8-950d-3041898e2d3c.png)
+
 
 #### Inline component
 
 ```scss
 @include nLiveChatInline();
 ```
+![Inline chat component](https://user-images.githubusercontent.com/12828487/36374209-7515f514-1562-11e8-915f-b07b009454f6.png)
+
 
 ### Client-side initialisation
 
