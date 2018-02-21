@@ -5,7 +5,7 @@ node_modules/@financial-times/n-gage/index.mk:
 -include node_modules/@financial-times/n-gage/index.mk
 
 build:
-	rm -rf dist
+	rm -rf dist && rm -rf public
 	tsc --p tsconfig.json
 
 build-production: build
