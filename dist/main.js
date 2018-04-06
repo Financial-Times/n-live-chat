@@ -52,7 +52,7 @@ class LiveChatPopup extends LiveChat {
     constructor() {
         super();
         this.popup = document.getElementById('liveAgentPopup');
-        this.closeButton = document.getElementById('liveAgentButton');
+        this.closeButton = document.getElementById('liveAgentButtonClose');
     }
     init(callbacks, options) {
         this.initializer(() => {
