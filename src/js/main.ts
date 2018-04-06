@@ -51,8 +51,8 @@ class LiveChat {
 			script.onload = () => {
 				// third party initialisation (SalesForce)
 				liveagent.init(
-					`${this.config.host}/chat`, 
-					this.config.deploymentId, 
+					`${this.config.host}/chat`,
+					this.config.deploymentId,
 					this.config.organisationId
 				);
 
@@ -97,7 +97,7 @@ export class LiveChatPopup extends LiveChat {
 	constructor() {
 		super();
 		this.popup = document.getElementById('liveAgentPopup') as HTMLDivElement;
-		this.closeButton = document.getElementById('liveAgentButton') as HTMLButtonElement;
+		this.closeButton = document.getElementById('liveAgentButtonClose') as HTMLButtonElement;
 	}
 
 	// clients should wrap LiveChatPopup.init() in try - catch blocks
