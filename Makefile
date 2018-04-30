@@ -5,8 +5,6 @@ node_modules/@financial-times/n-gage/index.mk:
 -include node_modules/@financial-times/n-gage/index.mk
 
 build:
-	# temp fix for bug in @types/node@10.0.0 - https://github.com/DefinitelyTyped/DefinitelyTyped/issues/25342
-	npm i @types/node@9.6.7
 	rm -rf dist && rm -rf public
 	tsc --p tsconfig.json
 
