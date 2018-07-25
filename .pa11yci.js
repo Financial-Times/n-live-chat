@@ -21,7 +21,7 @@ const urls = [
 const config = {
 	defaults: {
 		timeout: 25000,
-		rules: ['Principle1.Guideline1_3.1_3_1_AAA']
+		rules: ['Principle1.Guideline1_3.1_3_1_AAA'],
 	},
 	urls: []
 };
@@ -33,9 +33,7 @@ for (const viewport of viewports) {
 
 		config.urls.push({
 			url: url,
-			page: {
-				viewport: viewport
-			},
+			viewport: viewport,
 			screenCapture: `./pa11y_screenCapture/${path}.png`
 		});
 	}
