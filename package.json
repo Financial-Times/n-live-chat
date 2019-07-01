@@ -38,6 +38,6 @@
     "prepare": "npx snyk protect || npx snyk protect -d || true"
   },
   "dependencies": {
-    "@types/node": "9.6.7"
+    "@types/node": "9.6.49"
   }
 }
