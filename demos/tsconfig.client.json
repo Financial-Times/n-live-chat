@@ -1,13 +1,21 @@
 {
-  "compilerOptions": {
-    "target": "es2017",
-	"outDir": "../public",
-	"rootDirs": ["./client", "../src/js"],                   
-	"removeComments": true,                   
-	"strict": true,		                     
-	"noImplicitAny": true
-  },
-  "files": [
-	  "client/demo.ts"
-  ]
+	"compilerOptions": {
+		"target": "es2017",
+		"outDir": "../public",
+		"rootDirs": [
+			"./client",
+			"../src/js"
+		],
+		"removeComments": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"types": [
+			"node",
+			"chalk",
+			"express"
+		]
+	},
+	"files": [
+		"client/demo.ts"
+	]
 }

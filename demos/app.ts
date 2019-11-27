@@ -1,9 +1,7 @@
 import { Application, Request, Response } from 'express';
 import { Server } from 'http';
 import * as express from '@financial-times/n-internal-tool';
-import * as chalk from 'chalk';
 
-const { red: errorHighlight, green: highlight } = chalk.default.bold;
 
 const app = express({
 	name: 'public',
@@ -44,11 +42,11 @@ function runPa11yTests (): void {
 	const pa11y = spawn('pa11y-ci');
 
 	pa11y.stdout.on('data', (data: Object) => {
-		console.log(highlight(`${data}`)); //eslint-disable-line
+		console.log(data); //eslint-disable-line
 	});
 
 	pa11y.stderr.on('data', (error: Object) => {
-		console.log(errorHighlight(`${error}`)); //eslint-disable-line
+		console.log(error); //eslint-disable-line
 	});
 
 	pa11y.on('close', (code: number) => {
