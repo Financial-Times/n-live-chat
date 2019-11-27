@@ -1,8 +1,10 @@
+$system-code: 'demo';
+
 @import 'n-ui-foundations/main';
 @import '../../main.scss';
 
 .demo-header {
-	@include oTypographySansBold($scale: 4);
+	@include oTypographySans($scale: 4, $weight: 'semibold');
 	border-bottom: 5px solid getColor('black-70');
 	margin-bottom: 3em;
 }
