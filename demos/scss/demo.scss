@@ -5,7 +5,7 @@ $system-code: 'demo';
 
 .demo-header {
 	@include oTypographySans($scale: 4, $weight: 'semibold');
-	border-bottom: 5px solid getColor('black-70');
+	border-bottom: 5px solid oColorsByName('black-70');
 	margin-bottom: 3em;
 }
 
