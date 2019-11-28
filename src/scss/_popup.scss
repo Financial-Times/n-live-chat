@@ -41,7 +41,7 @@
 	
 		&-button {
 			@include oButtonsContent($opts: (
-				size: 'default',
+				type: 'primary',
 				theme: $buttonTheme
 			));
 			border-color: oColorsByName($textColor);

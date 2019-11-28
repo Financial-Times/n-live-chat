@@ -10,7 +10,7 @@
 
         &-button {
             @include oButtonsContent($opts: (
-                size: 'default',
+                type: 'primary',
                 theme: $buttonTheme
             ));
         }
