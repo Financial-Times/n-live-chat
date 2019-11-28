@@ -21,31 +21,34 @@
 	$buttonTheme: 'b2c'
 ) {
 	.n-live-agent__popup {
-		@include oVisualEffectsShadowsElevation('high', oColorsGetPaletteColor('black-90'));
+		@include oVisualEffectsShadowContent('high', oColorsByName('black-90'));
 		border: 0;
 		border-radius: 0;
 		margin: 10px;
 		padding: 8px 8px 8px 16px;
-		background-color: oColorsGetPaletteColor($baseColor);
+		background-color: oColorsByName($baseColor);
 		left: auto;
 		display: flex;
 		flex-flow: row wrap-reverse;
 		align-items: center;
 
 		&-cta {
-			@include oTypographySansBold($scale: 0);
-			color: oColorsGetPaletteColor($textColor);
+			@include oTypographySans($scale: 0, $weight: 'semibold');
+			color: oColorsByName($textColor);
 			text-align: center;
 		}
 
 	
 		&-button {
-			@include oButtons($size: 'default', $theme: $buttonTheme);
-			border-color: oColorsGetPaletteColor($textColor);
+			@include oButtonsContent($opts: (
+				type: 'primary',
+				theme: $buttonTheme
+			));
+			border-color: oColorsByName($textColor);
 			margin: 5px;
 	
 			&--close {
-				@include oIconsGetIcon('cross', oColorsGetPaletteColor($textColor), 30, $iconset-version: 1);
+				@include oIconsContent('cross', oColorsByName($textColor), 30, $iconset-version: 1);
 				border: 0;
 				background-position-x: left;
 			}
