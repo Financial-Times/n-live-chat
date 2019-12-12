@@ -5,12 +5,12 @@
   "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "main": ["main.scss", "dist/main.js"],
   "dependencies": {
-    "n-sliding-popup": "^3.0.0",
-    "n-ui-foundations": "^4.0.0-beta.2",
-    "o-buttons": "^6.0.0",
-    "o-colors": "^5.0.0",
-    "o-icons": "^6.0.0",
-    "o-typography": "^6.0.0",
-    "o-visual-effects": "^3.0.0"
+    "n-sliding-popup": "^2.0.0",
+    "n-ui-foundations": "^3.0.1",
+    "o-buttons": "^5.13.1",
+    "o-colors": "^4.4.1",
+    "o-icons": "^5.7.1",
+    "o-typography": "^5.7.5",
+    "o-visual-effects": "^2.0.3"
   }
 }
