@@ -4,7 +4,11 @@
 	data-button-reference="{{{buttonReference}}}"
 	data-host="{{{host}}}"
 {{/with}}>
-	{{{usePartial style path='n-live-chat/templates/partials'}}}
+	{{#ifEquals style 'inline'}}
+		{{> n-live-chat/templates/partials/inline}}
+	{{else}}
+		{{> n-live-chat/templates/partials/popup}}
+	{{/ifEquals}}
 	<div id="liveAgentOnlineIndicator"></div>
 	<div id="liveAgentOfflineIndicator"></div>
 </div>
