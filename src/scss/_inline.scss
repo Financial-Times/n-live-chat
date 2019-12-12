@@ -9,10 +9,7 @@
         }
 
         &-button {
-            @include oButtonsContent($opts: (
-                type: 'primary',
-                theme: $buttonTheme
-            ));
+            @include oButtons($size: 'default', $theme: $buttonTheme);
         }
 	
     }
