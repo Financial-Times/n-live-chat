@@ -57,6 +57,8 @@ class LiveChatPopup extends LiveChat {
     init(callbacks, options) {
         this.initializer(() => {
             this.popup.setAttribute('data-n-sliding-popup-visible', 'true');
+            this.popup.setAttribute('aria-hidden', 'false');
+
             this.closeButton.onclick = () => {
                 this.popup.removeAttribute('data-n-sliding-popup-visible');
                 this.popup.setAttribute('aria-hidden', 'true');
