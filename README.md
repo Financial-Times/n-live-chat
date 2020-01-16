@@ -11,11 +11,13 @@ npm install -S @financial-times/n-live-chat
 bower install -S n-live-chat
 ```
 
-### Handlebars template
+### JSX Component
 
-```hbs
-{{> n-live-chat/templates/liveagent style='popup' salesforceConfig=configObject}}
-{{> n-live-chat/templates/liveagent style='inline' salesforceConfig=configObject}}
+```jsx
+import LiveChat from '@financial-times/n-live-chat/component/main';
+
+<LiveChat style='popup' salesforceConfig={configObject} />
+<LiveChat style='inline' salesforceConfig={configObject} />
 ```
 
 #### Salesforce configuration

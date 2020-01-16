@@ -1,7 +1,6 @@
-import { Application, Request, Response } from 'express';
-import { Server } from 'http';
-import * as express from '@financial-times/n-internal-tool';
-
+require('sucrase/register');
+const express = require('@financial-times/n-internal-tool');
+const { PageKitReactJSX } = require('@financial-times/dotcom-server-react-jsx');
 
 const app = express({
 	name: 'public',
@@ -12,44 +11,45 @@ const app = express({
 	directory: process.cwd(),
 	demo: true,
 	s3o: false
-}) as Application;
+});
 
-interface SalesforceConfig {
-	deploymentId?: string;
-	organisationId?: string;
-	buttonReference?: string;
-	host?: string;
-}
+app.use(express.static('public'));
+app.engine('.jsx', new PageKitReactJSX().engine);
 
-const salesforceConfig: SalesforceConfig = {
+const salesforceConfig = {
 	deploymentId: process.env.SALESFORCE_DEPLOYMENT_ID,
 	organisationId: process.env.SALESFORCE_ORGANISATION_ID,
 	buttonReference: process.env.SALESFORCE_BUTTON_REFERENCE,
 	host: process.env.SALESFORCE_HOST
-}
+};
 
-const render = (title: string) => (req: Request, res: Response): void => 
-	res.render(`demo-${title}`, {
-		title,
+app.get('/popup', (req, res) => {
+	res.render('demo.jsx', {
+		style: 'popup',
 		salesforceConfig
-    });
+	});
+});
 
-app.get('/popup', render('popup'));
-app.get('/inline', render('inline'));
+app.get('/inline', (req, res) => {
+	res.render('demo.jsx', {
+		style: 'inline',
+		salesforceConfig
+	});
+});
 
-function runPa11yTests (): void { 
+function runPa11yTests () {
 	const spawn = require('child_process').spawn;
 	const pa11y = spawn('pa11y-ci');
 
-	pa11y.stdout.on('data', (data: Object) => {
+	pa11y.stdout.on('data', (data) => {
 		console.log(data); //eslint-disable-line
 	});
 
-	pa11y.stderr.on('data', (error: Object) => {
+	pa11y.stderr.on('data', (error) => {
 		console.log(error); //eslint-disable-line
 	});
 
-	pa11y.on('close', (code: number) => {
+	pa11y.on('close', (code) => {
 		process.exit(code);
 	});
 }
@@ -57,7 +57,7 @@ function runPa11yTests (): void {
 const server = app.listen(5005, () => {
 	if (process.env.PA11Y === 'true') {
 		runPa11yTests();
-	}	
+	}
 });
 
-export default app;
+module.exports = app;
