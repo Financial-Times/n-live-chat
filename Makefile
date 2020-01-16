@@ -19,12 +19,12 @@ build-demo:
 	node-sass demos/scss/demo.scss public/main.css --include-path bower_components
 	@$(DONE)
 
-demo:
+demo: build-demo
 	node demos/app
 
 a11y: build-demo
 	@node .pa11yci.js
-	@PA11Y=true node public/app
+	@PA11Y=true node demos/app
 	@$(DONE)
 
 test: verify a11y

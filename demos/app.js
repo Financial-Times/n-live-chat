@@ -42,15 +42,15 @@ function runPa11yTests () {
 	const pa11y = spawn('pa11y-ci');
 
 	pa11y.stdout.on('data', (data) => {
-		console.log(data); //eslint-disable-line
+		console.log(data.toString()); //eslint-disable-line
 	});
 
 	pa11y.stderr.on('data', (error) => {
-		console.log(error); //eslint-disable-line
+		console.log(error.toString()); //eslint-disable-line
 	});
 
 	pa11y.on('close', (code) => {
-		process.exit(code);
+		process.exit(code.toString());
 	});
 }
 

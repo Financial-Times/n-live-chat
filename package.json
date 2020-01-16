@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "@financial-times/dotcom-server-react-jsx": "^0.5.4",
+    "@financial-times/dotcom-ui-shell": "^0.5.4",
     "@financial-times/n-gage": "^3.6.0",
     "@financial-times/n-internal-tool": "^2.2.5",
     "@types/chalk": "^2.2.0",
