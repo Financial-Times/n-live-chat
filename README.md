@@ -20,6 +20,28 @@ import LiveChat from '@financial-times/n-live-chat/component/main';
 <LiveChat style='inline' salesforceConfig={configObject} />
 ```
 
+### Migration from Handlebars
+
+With other ongoing work to move away from `n-ui` / `Handlebars` - this component from v3 no longer has any handlebars partials. If you require the handlebars template, please use the `v2` release.
+
+However, you may be able to register a custom `Handlebars` helper if you're feeling more adventurous. Without any testing (caveat emptor) it could be something akin to:
+
+```js
+const React = require('react')
+const ReactDOMServer = require('react-dom/server')
+module.exports = function({ hash }) {
+  const component = require(hash.component)
+  const props = { ...this, ...hash }
+  return ReactDOMServer.renderToString(
+    React.createElement(component, props)
+  )
+}
+```
+
+```hbs
+<div>{{{#jsx component="@financial-times/n-component-here" someprop="goeshere" }}}</div>
+```
+
 #### Salesforce configuration
 
 ```js
