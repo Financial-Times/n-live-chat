@@ -7,12 +7,13 @@ node_modules/@financial-times/n-gage/index.mk:
 build:
 	rm -rf dist && rm -rf public
 	tsc --p tsconfig.json
+	rollup -c
+	@$(DONE)
 
 build-production: build
 
-build-demo:
+build-demo: build
 	# transpiling demo app
-	rm -rf public
 	tsc --p demos/tsconfig.client.json
 	webpack --config demos/webpack.config.js
 	# building styles
