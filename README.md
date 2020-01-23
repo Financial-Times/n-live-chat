@@ -14,7 +14,7 @@ bower install -S n-live-chat
 ### JSX Component
 
 ```jsx
-import LiveChat from '@financial-times/n-live-chat/component/main';
+import LiveChat from '@financial-times/n-live-chat';
 
 <LiveChat style='popup' salesforceConfig={configObject} />
 <LiveChat style='inline' salesforceConfig={configObject} />
@@ -56,7 +56,7 @@ const configObject = {
 ### Styles
 
 ```scss
-@import "n-live-chat/main";
+@import "@financial-times/n-live-chat/main";
 ```
 
 #### Popup component
@@ -78,6 +78,7 @@ const configObject = {
 ### Client-side initialisation
 
 ```js
+import { LiveChatPopup, LiveChatInline } from '@financial-times/n-live-chat';
 // basic setup for popup component with no tracking
 new LiveChatPopup().init();
 
