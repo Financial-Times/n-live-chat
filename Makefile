@@ -14,7 +14,6 @@ build-production: build
 
 build-demo: build
 	# transpiling demo app
-	tsc --p demos/tsconfig.client.json
 	webpack --config demos/webpack.config.js
 	# building styles
 	node-sass demos/scss/demo.scss public/main.css --include-path bower_components

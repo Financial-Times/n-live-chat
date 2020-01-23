@@ -1,4 +1,4 @@
-import { LiveChatInline, LiveChatPopup } from '../../src/js/browser';
+import { LiveChatInline, LiveChatPopup } from '../../dist/browser';
 
 if(document.querySelector('[data-live-chat-style="inline"]')) {
 	new LiveChatInline().init(null, { demoMode: 'online' });
