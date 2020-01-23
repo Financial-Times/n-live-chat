@@ -1,6 +1,6 @@
 import React from 'react';
 import { Shell } from '@financial-times/dotcom-ui-shell';
-import LiveChat from '../../component/main';
+import LiveChat from '../../dist/component';
 
 export default ({ style, salesforceConfig }) => {
 	return (
