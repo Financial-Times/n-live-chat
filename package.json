@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Live chat for FT.com",
   "main": "dist/component.js",
-  "browser": "dist/main.js",
+  "browser": "dist/browser.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Financial-Times/n-live-chat.git"
