@@ -3,7 +3,7 @@
   "homepage": "https://github.com/financial-times/n-live-chat",
   "description": "Live chat for FT.com",
   "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
-  "main": ["main.scss", "dist/browser.scss"],
+  "main": ["main.scss", "dist/browser.js"],
   "dependencies": {
     "n-sliding-popup": "^3.0.0",
     "n-ui-foundations": "^4.0.0-beta.2",
