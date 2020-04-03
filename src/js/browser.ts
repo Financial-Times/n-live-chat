@@ -59,15 +59,15 @@ class LiveChat {
 				const { demoMode = false, displayDelay = 1000 } = options || {};
 
 				const initLiveChat: Function = () : void => {
-					const online: boolean = this.offlineIndicator.style.display === 'none';
-					if (online || demoMode === 'online') {
+					const online: boolean = this.offlineIndicator.style.display === 'none' || demoMode === 'online';
+					if (online) {
 						// callback if an agent is online
 						if(callbacks && callbacks.online) {
 							callbacks.online();
 						}
 						// initializer callback
 						if(onInit) {
-							onInit();
+							onInit(online);
 						}
 						this.button.onclick = () => {
 							liveagent.startChat(this.config.buttonReference);
@@ -102,8 +102,8 @@ export class LiveChatPopup extends LiveChat {
 
 	// clients should wrap LiveChatPopup.init() in try - catch blocks
 	init(callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null) : void {
-		this.initializer(() => {
-			this.popup.setAttribute('data-n-sliding-popup-visible', 'true');
+		this.initializer((isOnline: boolean) => {
+			isOnline && this.popup.setAttribute('data-n-sliding-popup-visible', 'true');
 			this.closeButton.onclick = () => {
 				this.popup.removeAttribute('data-n-sliding-popup-visible');
 				this.popup.setAttribute('aria-hidden', 'true');
@@ -118,8 +118,16 @@ export class LiveChatPopup extends LiveChat {
 }
 
 export class LiveChatInline extends LiveChat {
+	inline: HTMLElement;
+
+	constructor() {
+		super();
+		this.inline = document.getElementById('liveAgentInline') as HTMLDivElement;
+	}
 	// clients should wrap LiveChatInline.init() in try - catch blocks
 	init(callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null) : void {
-		this.initializer()(callbacks, options);
+		this.initializer((isOnline: boolean) => {
+			this.inline.style.display = isOnline ? 'block' : 'none';
+		})(callbacks, options);
 	}
 }

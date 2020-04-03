@@ -19,7 +19,7 @@ const PopUpLiveChat = () => {
 
 const InlineLiveChat = () => {
 	return (
-		<div className="n-live-agent__inline">
+		<div id="liveAgentInline" className="n-live-agent__inline" style={{ display: 'none' }}>
 			<div>
 				<p className="n-live-agent__inline-message">Have a question? Visit the <a href="https://help.ft.com">FT Help Centre</a> or chat to a customer advisor now.</p>
 			</div>
