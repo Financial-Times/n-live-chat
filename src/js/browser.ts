@@ -1,3 +1,4 @@
+import * as flags from '@financial-times/dotcom-ui-flags/browser';
 declare let liveagent: any;
 declare global {
 	interface Window {
@@ -46,6 +47,7 @@ class LiveChat {
 
 	initializer(onInit?: Function) : Function {
 		return (callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null) : void => {
+			const flagsClient = flags.init();
 			let script: HTMLScriptElement = document.createElement('script');
 			script.src = `${this.config.host}/content/g/js/41.0/deployment.js`;
 			script.onload = () => {
@@ -70,7 +72,12 @@ class LiveChat {
 							onInit(online);
 						}
 						this.button.onclick = () => {
-							liveagent.startChat(this.config.buttonReference);
+							if(flagsClient && flagsClient.get('customerCareLiveChat')){
+								const url: string = `https://live-chat.ft.com/${this.config.buttonReference}/${this.config.deploymentId}`;
+								window.open(url, 'FT Live Chat', 'height=474px, width=467px')
+							} else {
+								liveagent.startChat(this.config.buttonReference);
+							}
 							// callback if the user clicks the start chat button
 							if(callbacks && callbacks.open) {
 								callbacks.open();
