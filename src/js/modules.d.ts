@@ -1,0 +1,1 @@
+declare module '@financial-times/dotcom-ui-flags/browser';
