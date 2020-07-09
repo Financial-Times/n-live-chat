@@ -21,6 +21,7 @@ interface LiveChatCallbacks {
 interface LiveChatOptions {
 	displayDelay?: number;
 	demoMode?: string;
+	chatterBox?: boolean;
 }
 
 class LiveChat {
@@ -56,7 +57,7 @@ class LiveChat {
 					this.config.organisationId
 				);
 
-				const { demoMode = false, displayDelay = 1000 } = options || {};
+				const { demoMode = false, displayDelay = 1000, chatterBox = false } = options || {};
 
 				const initLiveChat: Function = () : void => {
 					const online: boolean = this.offlineIndicator.style.display === 'none' || demoMode === 'online';
@@ -70,7 +71,12 @@ class LiveChat {
 							onInit(online);
 						}
 						this.button.onclick = () => {
-							liveagent.startChat(this.config.buttonReference);
+							if(chatterBox){
+								const url: string = `https://live-chat.ft.com/${this.config.buttonReference}/${this.config.deploymentId}`;
+								window.open(url, 'FT Live Chat', 'height=474px, width=467px')
+							} else {
+								liveagent.startChat(this.config.buttonReference);
+							}
 							// callback if the user clicks the start chat button
 							if(callbacks && callbacks.open) {
 								callbacks.open();

@@ -35,12 +35,9 @@
   "config": {},
   "scripts": {
     "commit": "commit-wizard",
-    "precommit": "node_modules/.bin/secret-squirrel",
-    "prepush": "make verify -j3",
     "start": "make demo",
     "build": "tsc",
     "clean": "rm -r ./dist ./public",
-    "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
     "prepare": "npx snyk protect || npx snyk protect -d || true"
   },
   "dependencies": {
@@ -49,5 +46,12 @@
   },
   "peerDependencies": {
     "react": "^16.12.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "node_modules/.bin/secret-squirrel-commitmsg",
+      "pre-commit": "node_modules/.bin/secret-squirrel",
+      "pre-push": "make verify -j3"
+    }
   }
 }
