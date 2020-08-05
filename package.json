@@ -41,7 +41,7 @@
     "prepare": "npx snyk protect || npx snyk protect -d || true"
   },
   "dependencies": {
-    "@types/node": "9.6.56",
+    "@types/node": "9.6.57",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
