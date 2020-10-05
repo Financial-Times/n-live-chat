@@ -8,6 +8,7 @@ build:
 	rm -rf dist && rm -rf public
 	tsc --p tsconfig.json
 	rollup -c
+	node-sass src/scss/main.scss dist/main.css --include-path bower_components
 	@$(DONE)
 
 build-production: build
