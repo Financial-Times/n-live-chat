@@ -1,3 +1,4 @@
+$system-code: 'n-live-chat';
 @import 'o-colors/main';
 @import 'o-typography/main';
 @import 'o-icons/main';
@@ -5,3 +6,6 @@
 @import 'o-visual-effects/main';
 @import 'n-sliding-popup/main';
 @import 'mixins';
+
+@include nLiveChatInline();
+@include nLiveChatPopup();
