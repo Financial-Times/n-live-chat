@@ -21,6 +21,7 @@
     "@types/typescript": "^2.0.0",
     "babel-loader": "^8.0.6",
     "bower": "^1.8.8",
+    "check-engine": "^1.10.1",
     "node-sass": "^4.9.2",
     "pa11y-ci": "^2.1.1",
     "react": "^16.12.0",
@@ -38,7 +39,8 @@
     "start": "make demo",
     "build": "tsc",
     "clean": "rm -r ./dist ./public",
-    "prepare": "npx snyk protect || npx snyk protect -d || true"
+    "prepare": "npx snyk protect || npx snyk protect -d || true",
+    "preinstall": "[ \"$INIT_CWD\" != \"$PWD\" ] || npm_config_yes=true npx check-engine"
   },
   "dependencies": {
     "@types/node": "9.6.59",
@@ -53,5 +55,13 @@
       "pre-commit": "node_modules/.bin/secret-squirrel",
       "pre-push": "make verify -j3"
     }
+  },
+  "volta": {
+    "node": "12.22.5",
+    "npm": "7.20.2"
+  },
+  "engines": {
+    "node": "12.x",
+    "npm": "7.x || 8.x"
   }
 }
