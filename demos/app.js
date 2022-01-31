@@ -14,6 +14,10 @@ const app = express({
 });
 
 app.use(express.static('public'));
+
+app.set('views', `${__dirname}/views`);
+app.set('view engine', '.html');
+
 app.engine('.jsx', new PageKitReactJSX().engine);
 
 const salesforceConfig = {
