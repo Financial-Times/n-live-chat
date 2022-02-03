@@ -1,1 +1,1 @@
-declare module '@financial-times/n-internal-tool';
+declare module '@financial-times/n-express';

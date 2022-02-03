@@ -1,5 +1,5 @@
 require('sucrase/register');
-const express = require('@financial-times/n-internal-tool');
+const express = require('@financial-times/n-express');
 const { PageKitReactJSX } = require('@financial-times/dotcom-server-react-jsx');
 
 const app = express({
@@ -14,6 +14,10 @@ const app = express({
 });
 
 app.use(express.static('public'));
+
+app.set('views', `${__dirname}/views`);
+app.set('view engine', '.html');
+
 app.engine('.jsx', new PageKitReactJSX().engine);
 
 const salesforceConfig = {
