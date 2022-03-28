@@ -22,7 +22,7 @@
     "babel-loader": "^8.0.6",
     "bower": "^1.8.8",
     "check-engine": "^1.10.1",
-    "node-sass": "^4.9.2",
+    "node-sass": "^7.0.0",
     "pa11y-ci": "^2.1.1",
     "react": "^16.12.0",
     "rollup": "^1.29.1",
