@@ -8,7 +8,6 @@ Customer Services live chat component for FT.com
 
 ```sh
 npm install -S @financial-times/n-live-chat
-bower install -S n-live-chat
 ```
 
 ### JSX Component
