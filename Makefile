@@ -8,7 +8,7 @@ build:
 	rm -rf dist && rm -rf public
 	tsc --p tsconfig.json
 	rollup -c
-	node-sass src/scss/main.scss dist/main.css --include-path bower_components
+	sass src/scss/main.scss --load-path node_modules
 	@$(DONE)
 
 build-production: build
@@ -17,7 +17,7 @@ build-demo: build
 	# transpiling demo app
 	webpack --config demos/webpack.config.js
 	# building styles
-	node-sass demos/scss/demo.scss public/main.css --include-path bower_components
+	sass demos/scss/demo.scss public/main.css --load-path node_modules
 	@$(DONE)
 
 demo: build-demo
