@@ -42,7 +42,7 @@
     "preinstall": "[ \"$INIT_CWD\" != \"$PWD\" ] || npm_config_yes=true npx check-engine"
   },
   "dependencies": {
-    "@financial-times/n-sliding-popup": "4.0.0-beta.1",
+    "@financial-times/n-sliding-popup": "4.0.0",
     "@types/node": "9.6.59",
     "n-ui-foundations": "^9.0.0",
     "prop-types": "^15.7.2"
