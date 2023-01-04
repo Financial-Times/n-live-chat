@@ -11,7 +11,8 @@ build:
 	sass src/scss/main.scss --load-path node_modules
 	@$(DONE)
 
-build-production: build
+build-production:
+	make build
 
 build-demo:
 	make build
@@ -21,11 +22,13 @@ build-demo:
 	sass demos/scss/demo.scss public/main.css --load-path node_modules
 	@$(DONE)
 
-demo: .env
+demo:
+	make .env
 	make build-demo
 	node demos/app
 
-a11y: build-demo
+a11y:
+	make build-demo
 	@node .pa11yci.js
 	@PA11Y=true node demos/app
 	@$(DONE)
