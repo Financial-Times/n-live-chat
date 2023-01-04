@@ -1,6 +1,8 @@
 require('sucrase/register');
 const express = require('@financial-times/n-express');
-const { PageKitReactJSX } = require('@financial-times/dotcom-server-react-jsx');
+const ReactDOM = require('react-dom/server');
+
+const demoTemplate = require('./views/demo.jsx')
 
 const app = express({
 	name: 'public',
@@ -15,11 +17,6 @@ const app = express({
 
 app.use(express.static('public'));
 
-app.set('views', `${__dirname}/views`);
-app.set('view engine', '.html');
-
-app.engine('.jsx', new PageKitReactJSX().engine);
-
 const salesforceConfig = {
 	deploymentId: process.env.SALESFORCE_DEPLOYMENT_ID,
 	organisationId: process.env.SALESFORCE_ORGANISATION_ID,
@@ -28,17 +25,21 @@ const salesforceConfig = {
 };
 
 app.get('/popup', (req, res) => {
-	res.render('demo.jsx', {
+	const page = demoTemplate.default({
 		style: 'popup',
 		salesforceConfig
-	});
+	})
+
+	res.send(ReactDOM.renderToStaticMarkup(page))
 });
 
 app.get('/inline', (req, res) => {
-	res.render('demo.jsx', {
+	const page = demoTemplate.default({
 		style: 'inline',
 		salesforceConfig
-	});
+	})
+
+	res.send(ReactDOM.renderToStaticMarkup(page))
 });
 
 function runPa11yTests () {
