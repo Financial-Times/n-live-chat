@@ -13,14 +13,16 @@ build:
 
 build-production: build
 
-build-demo: build
+build-demo:
+	make build
 	# transpiling demo app
 	webpack --config demos/webpack.config.js
 	# building styles
 	sass demos/scss/demo.scss public/main.css --load-path node_modules
 	@$(DONE)
 
-demo: build-demo
+demo: .env
+	make build-demo
 	node demos/app
 
 a11y: build-demo
