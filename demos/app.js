@@ -29,22 +29,20 @@ const salesforceConfig = {
 app.get('/popup', (req, res) => {
 	const { liveChatStaging } = res.locals.flags;
 	salesforceConfig.liveChatURL= liveChatStaging ? process.env.LIVE_CHAT_STAGING_HOST : process.env.LIVE_CHAT_PROD_HOST;
-	res.render('demo.jsx', {
+	const page = demoTemplate.default({
 		style: 'popup',
 		salesforceConfig
 	})
-
 	res.send(ReactDOM.renderToStaticMarkup(page))
 });
 
 app.get('/inline', (req, res) => {
 	const { liveChatStaging } = res.locals.flags;
 	salesforceConfig.liveChatURL= liveChatStaging ? process.env.LIVE_CHAT_STAGING_HOST : process.env.LIVE_CHAT_PROD_HOST;
-	res.render('demo.jsx', {
+	const page = demoTemplate.default({
 		style: 'inline',
 		salesforceConfig
 	})
-
 	res.send(ReactDOM.renderToStaticMarkup(page))
 });
 
