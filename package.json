@@ -53,7 +53,7 @@
     "@financial-times/o-icons": "^7.2.1",
     "@financial-times/o-typography": "^7.3.2",
     "@financial-times/o-visual-effects": "^4.2.0",
-    "react": "^17.0.0"
+    "react": "^16.0.0"
   },
   "husky": {
     "hooks": {
