@@ -112,6 +112,7 @@ const options = {
 
 new LiveChatPopup().init(callbacks, options);
 ```
+
 ### chatterBox Feature Flag
 n-live-chat will connect to the latest Customer Care Live Chat app , when this feature flag is on. The apps consuming n-live-chat can enable this feature by passing in the flag state for customerCareLiveChat as an option to the init function call.
 
@@ -129,5 +130,5 @@ new LiveChatPopup().init(null, options);
 make install .env demo
 ```
 
-- [Inline component demo](http://localhost:5005/inline)
-- [Popup component demo](http://localhost:5005/popup)
+- [Inline component demo](http://localhost:5005/inline)(for the purpose of demo this uses the staging environment url)
+- [Popup component demo](http://localhost:5005/popup) (for the purpose of demo this uses the prod environment url)

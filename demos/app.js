@@ -12,7 +12,8 @@ const app = express({
 	partialsDirectory: process.cwd(),
 	directory: process.cwd(),
 	demo: true,
-	s3o: false
+	s3o: false,
+	withFlags: true,
 });
 
 app.use(express.static('public'));
@@ -22,23 +23,26 @@ const salesforceConfig = {
 	organisationId: process.env.SALESFORCE_ORGANISATION_ID,
 	buttonReference: process.env.SALESFORCE_BUTTON_REFERENCE,
 	host: process.env.SALESFORCE_HOST
+	
 };
 
 app.get('/popup', (req, res) => {
+	const { liveChatStaging } = res.locals.flags;
+	salesforceConfig.liveChatURL= liveChatStaging ? process.env.LIVE_CHAT_STAGING_HOST : process.env.LIVE_CHAT_PROD_HOST;
 	const page = demoTemplate.default({
 		style: 'popup',
 		salesforceConfig
 	})
-
 	res.send(ReactDOM.renderToStaticMarkup(page))
 });
 
 app.get('/inline', (req, res) => {
+	const { liveChatStaging } = res.locals.flags;
+	salesforceConfig.liveChatURL= liveChatStaging ? process.env.LIVE_CHAT_STAGING_HOST : process.env.LIVE_CHAT_PROD_HOST;
 	const page = demoTemplate.default({
 		style: 'inline',
 		salesforceConfig
 	})
-
 	res.send(ReactDOM.renderToStaticMarkup(page))
 });
 

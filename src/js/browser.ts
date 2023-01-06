@@ -22,6 +22,7 @@ interface LiveChatOptions {
 	displayDelay?: number;
 	demoMode?: string;
 	chatterBox?: boolean;
+	liveChatURL: string;
 }
 
 class LiveChat {
@@ -31,7 +32,7 @@ class LiveChat {
 	onlineIndicator: HTMLElement;
 	offlineIndicator: HTMLElement;
 
-    constructor() {
+	constructor() {
 		this.container = document.getElementById('liveAgent') as HTMLDivElement;
 		this.button = document.getElementById('liveAgentButton') as HTMLButtonElement;
 		this.onlineIndicator = document.getElementById('liveAgentOnlineIndicator') as HTMLDivElement;
@@ -45,46 +46,46 @@ class LiveChat {
 		});
 	}
 
-	initializer(onInit?: Function) : Function {
-		return (callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null) : void => {
+	initializer(onInit?: Function): Function {
+		return (callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null): void => {
 			let script: HTMLScriptElement = document.createElement('script');
 			script.src = `${this.config.host}/content/g/js/41.0/deployment.js`;
 			script.onload = () => {
 				// third party initialisation (SalesForce)
+				const { demoMode = false, displayDelay = 1000, chatterBox = false, liveChatURL } = options || {};
 				liveagent.init(
 					`${this.config.host}/chat`,
 					this.config.deploymentId,
 					this.config.organisationId
 				);
 
-				const { demoMode = false, displayDelay = 1000, chatterBox = false } = options || {};
 
-				const initLiveChat: Function = () : void => {
+				const initLiveChat: Function = (): void => {
 					const online: boolean = this.offlineIndicator.style.display === 'none' || demoMode === 'online';
 					if (online) {
 						// callback if an agent is online
-						if(callbacks && callbacks.online) {
+						if (callbacks && callbacks.online) {
 							callbacks.online();
 						}
 						// initializer callback
-						if(onInit) {
+						if (onInit) {
 							onInit(online);
 						}
 						this.button.onclick = () => {
-							if(chatterBox){
-								const url: string = `https://live-chat.ft.com/${this.config.buttonReference}/${this.config.deploymentId}`;
+							if (chatterBox) {
+								const url: string = `${liveChatURL}/${this.config.buttonReference}/${this.config.deploymentId}`;
 								window.open(url, 'FT Live Chat', 'height=474px, width=467px')
 							} else {
 								liveagent.startChat(this.config.buttonReference);
 							}
 							// callback if the user clicks the start chat button
-							if(callbacks && callbacks.open) {
+							if (callbacks && callbacks.open) {
 								callbacks.open();
 							}
 						};
 					} else {
 						// callback if all agents are offline
-						if(callbacks && callbacks.offline) {
+						if (callbacks && callbacks.offline) {
 							callbacks.offline();
 						}
 					}
@@ -107,7 +108,7 @@ export class LiveChatPopup extends LiveChat {
 	}
 
 	// clients should wrap LiveChatPopup.init() in try - catch blocks
-	init(callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null) : void {
+	init(callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null): void {
 		this.initializer((isOnline: boolean) => {
 			isOnline && this.popup.setAttribute('data-n-sliding-popup-visible', 'true');
 			this.closeButton.onclick = () => {
@@ -115,7 +116,7 @@ export class LiveChatPopup extends LiveChat {
 				this.popup.setAttribute('aria-hidden', 'true');
 
 				// callback on dismissing the popup
-				if(callbacks && callbacks.dismiss) {
+				if (callbacks && callbacks.dismiss) {
 					callbacks.dismiss();
 				}
 			};
@@ -131,7 +132,7 @@ export class LiveChatInline extends LiveChat {
 		this.inline = document.getElementById('liveAgentInline') as HTMLDivElement;
 	}
 	// clients should wrap LiveChatInline.init() in try - catch blocks
-	init(callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null) : void {
+	init(callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null): void {
 		this.initializer((isOnline: boolean) => {
 			this.inline.style.display = isOnline ? 'block' : 'none';
 		})(callbacks, options);
