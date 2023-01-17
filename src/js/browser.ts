@@ -1,3 +1,5 @@
+import * as pageKitFlags from '@financial-times/dotcom-ui-flags';
+import {TFlagsData} from "@financial-times/dotcom-ui-flags/src/types";
 declare let liveagent: any;
 declare global {
 	interface Window {
@@ -31,6 +33,7 @@ class LiveChat {
 	button: HTMLElement;
 	onlineIndicator: HTMLElement;
 	offlineIndicator: HTMLElement;
+	flags: TFlagsData;
 
 	constructor() {
 		this.container = document.getElementById('liveAgent') as HTMLDivElement;
@@ -38,6 +41,9 @@ class LiveChat {
 		this.onlineIndicator = document.getElementById('liveAgentOnlineIndicator') as HTMLDivElement;
 		this.offlineIndicator = document.getElementById('liveAgentOfflineIndicator') as HTMLDivElement;
 		this.config = this.container.dataset as SalesforceConfig;
+		// @ts-ignore
+		this.flags = pageKitFlags.init();
+
 
 		window._laq = window._laq || [];
 		window._laq.push(() => {
@@ -73,7 +79,9 @@ class LiveChat {
 						}
 						this.button.onclick = () => {
 							if (chatterBox) {
-								const url: string = `${liveChatURL}/${this.config.buttonReference}/${this.config.deploymentId}`;
+								// @ts-ignore
+								const baseUrl: string = this.flags.get('liveChatStaging') ? `https://ip-chatterbox-client-staging.herokuapp.com/` : `https://live-chat.ft.com/`;
+								const url: string = `${baseUrl}${this.config.buttonReference}/${this.config.deploymentId}`;
 								window.open(url, 'FT Live Chat', 'height=474px, width=467px')
 							} else {
 								liveagent.startChat(this.config.buttonReference);
