@@ -1,5 +1,5 @@
 import * as pageKitFlags from '@financial-times/dotcom-ui-flags';
-import {TFlagsData} from "@financial-times/dotcom-ui-flags/src/types";
+import {Flags} from "@financial-times/dotcom-ui-flags/src/client";
 declare let liveagent: any;
 declare global {
 	interface Window {
@@ -33,7 +33,7 @@ class LiveChat {
 	button: HTMLElement;
 	onlineIndicator: HTMLElement;
 	offlineIndicator: HTMLElement;
-	flags: TFlagsData;
+	flags: Flags;
 
 	constructor() {
 		this.container = document.getElementById('liveAgent') as HTMLDivElement;
@@ -79,7 +79,6 @@ class LiveChat {
 						}
 						this.button.onclick = () => {
 							if (chatterBox) {
-								// @ts-ignore
 								const baseUrl: string = this.flags.get('liveChatStaging') ? process.env.LIVE_CHAT_STAGING_HOST : process.env.LIVE_CHAT_PROD_HOST;
 								const url: string = `${baseUrl}${this.config.buttonReference}/${this.config.deploymentId}`;
 								window.open(url, 'FT Live Chat', 'height=474px, width=467px')
