@@ -80,7 +80,7 @@ class LiveChat {
 						this.button.onclick = () => {
 							if (chatterBox) {
 								// @ts-ignore
-								const baseUrl: string = this.flags.get('liveChatStaging') ? `https://ip-chatterbox-client-staging.herokuapp.com/` : `https://live-chat.ft.com/`;
+								const baseUrl: string = this.flags.get('liveChatStaging') ? process.env.LIVE_CHAT_STAGING_HOST : process.env.LIVE_CHAT_PROD_HOST;
 								const url: string = `${baseUrl}${this.config.buttonReference}/${this.config.deploymentId}`;
 								window.open(url, 'FT Live Chat', 'height=474px, width=467px')
 							} else {
