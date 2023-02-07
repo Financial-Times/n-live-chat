@@ -82,7 +82,7 @@ class LiveChat {
 								const LIVE_CHAT_STAGING_HOST = 'https://ip-chatterbox-client-staging.herokuapp.com';
 								const LIVE_CHAT_PROD_HOST = 'https://d.la1-c1cs-iad.salesforceliveagent.com'
 								const baseUrl: string = this.flags.get('liveChatStaging') ? LIVE_CHAT_STAGING_HOST : LIVE_CHAT_PROD_HOST;
-								const url: string = `${baseUrl}${this.config.buttonReference}/${this.config.deploymentId}`;
+								const url: string = `${baseUrl}/${this.config.buttonReference}/${this.config.deploymentId}`;
 								window.open(url, 'FT Live Chat', 'height=474px, width=467px')
 							} else {
 								liveagent.startChat(this.config.buttonReference);
