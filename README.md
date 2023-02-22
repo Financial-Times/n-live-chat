@@ -114,11 +114,11 @@ new LiveChatPopup().init(callbacks, options);
 ```
 
 ### chatterBox Feature Flag
-n-live-chat will connect to the latest Customer Care Live Chat app , when this feature flag is on. The apps consuming n-live-chat can enable this feature by passing in the flag state for customerCareLiveChat as an option to the init function call.
+n-live-chat will connect to the latest Customer Care Live Chat app , when this feature flag is on. The apps consuming n-live-chat can enable this feature by passing in the flag state for chatterboxChat as an option to the init function call.
 
 ```js
 const options = {
-  chatterBox: flags.get(customerCareLiveChat)
+  chatterBox: flags.get(chatterboxChat)
 };
 
 new LiveChatPopup().init(null, options);
