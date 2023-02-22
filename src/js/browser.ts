@@ -53,55 +53,59 @@ class LiveChat {
 	}
 
 	initializer(onInit?: Function): Function {
-		return (callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null): void => {
-			let script: HTMLScriptElement = document.createElement('script');
-			script.src = `${this.config.host}/content/g/js/41.0/deployment.js`;
-			script.onload = () => {
-				// third party initialisation (SalesForce)
-				const { demoMode = false, displayDelay = 1000, chatterBox = false, liveChatURL } = options || {};
-				liveagent.init(
-					`${this.config.host}/chat`,
-					this.config.deploymentId,
-					this.config.organisationId
-				);
+		if(this.flags.get('liveChatStaging')) {
+			return (callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null): void => {
+				let script: HTMLScriptElement = document.createElement('script');
+				script.src = `${this.config.host}/content/g/js/41.0/deployment.js`;
+				script.onload = () => {
+					// third party initialisation (SalesForce)
+					const { demoMode = false, displayDelay = 1000, chatterBox = false, liveChatURL } = options || {};
+					liveagent.init(
+						`${this.config.host}/chat`,
+						this.config.deploymentId,
+						this.config.organisationId
+					);
 
 
-				const initLiveChat: Function = (): void => {
-					const online: boolean = this.offlineIndicator.style.display === 'none' || demoMode === 'online';
-					if (online) {
-						// callback if an agent is online
-						if (callbacks && callbacks.online) {
-							callbacks.online();
-						}
-						// initializer callback
-						if (onInit) {
-							onInit(online);
-						}
-						this.button.onclick = () => {
-							if (chatterBox) {
-								const LIVE_CHAT_STAGING_HOST = 'https://ip-chatterbox-client-staging.herokuapp.com';
-								const LIVE_CHAT_PROD_HOST = 'https://live-chat.ft.com';
-								const baseUrl: string = this.flags.get('liveChatStaging') ? LIVE_CHAT_STAGING_HOST : LIVE_CHAT_PROD_HOST;
-								const url: string = `${baseUrl}/${this.config.buttonReference}/${this.config.deploymentId}`;
-								window.open(url, 'FT Live Chat', 'height=474px, width=467px')
-							} else {
-								liveagent.startChat(this.config.buttonReference);
+					const initLiveChat: Function = (): void => {
+						const online: boolean = this.offlineIndicator.style.display === 'none' || demoMode === 'online';
+						if (online) {
+							// callback if an agent is online
+							if (callbacks && callbacks.online) {
+								callbacks.online();
 							}
-							// callback if the user clicks the start chat button
-							if (callbacks && callbacks.open) {
-								callbacks.open();
+							// initializer callback
+							if (onInit) {
+								onInit(online);
 							}
-						};
-					} else {
-						// callback if all agents are offline
-						if (callbacks && callbacks.offline) {
-							callbacks.offline();
+							this.button.onclick = () => {
+								if (chatterBox) {
+									const LIVE_CHAT_STAGING_HOST = 'https://ip-chatterbox-client-staging.herokuapp.com';
+									const LIVE_CHAT_PROD_HOST = 'https://live-chat.ft.com';
+									const baseUrl: string = this.flags.get('liveChatStaging') ? LIVE_CHAT_STAGING_HOST : LIVE_CHAT_PROD_HOST;
+									const url: string = `${baseUrl}/${this.config.buttonReference}/${this.config.deploymentId}`;
+									window.open(url, 'FT Live Chat', 'height=474px, width=467px')
+								} else {
+									liveagent.startChat(this.config.buttonReference);
+								}
+								// callback if the user clicks the start chat button
+								if (callbacks && callbacks.open) {
+									callbacks.open();
+								}
+							};
+						} else {
+							// callback if all agents are offline
+							if (callbacks && callbacks.offline) {
+								callbacks.offline();
+							}
 						}
-					}
+					};
+					setTimeout(initLiveChat, displayDelay > 1000 ? displayDelay : 1000);
 				};
-				setTimeout(initLiveChat, displayDelay > 1000 ? displayDelay : 1000);
-			};
-			document.head.appendChild(script);
+				document.head.appendChild(script);
+			}
+		} else {
+			return ()=>{}
 		}
 	}
 }
