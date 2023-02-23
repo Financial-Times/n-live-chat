@@ -53,7 +53,7 @@ class LiveChat {
 	}
 
 	initializer(onInit?: Function): Function {
-		if(this.flags.get('liveChatStaging')) {
+		if(this.flags.get('liveChat')) {
 			return (callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null): void => {
 				let script: HTMLScriptElement = document.createElement('script');
 				script.src = `${this.config.host}/content/g/js/41.0/deployment.js`;
