@@ -4,8 +4,10 @@ $system-code: 'n-live-chat';
 @import '@financial-times/o-icons/main';
 @import '@financial-times/o-buttons/main';
 @import '@financial-times/o-visual-effects/main';
-@import '@financial-times/n-sliding-popup/main';
+@import '@financial-times/o-grid/main';
 @import 'mixins';
+@import '../../sliding-popup/main.scss';
+
 
 @include nLiveChatInline();
 @include nLiveChatPopup();

@@ -1,0 +1,74 @@
+@import '@financial-times/o-colors/main';
+@import '@financial-times/o-icons/main';
+@import '@financial-times/o-grid/main';
+
+.n-sliding-popup {
+  position: fixed;
+  display: inline-block;
+  opacity: 0;
+  z-index: 1000;
+  transition: all .4s ease-in-out, opacity .6s ease-in;
+  padding: 14px;
+  box-shadow: 0px 0px 17px 4px rgba(0, 0, 0, 0.11);
+  border: 2px solid oColorsByName('black-20');
+  border-radius: 6px;
+  background: white;
+
+  &[data-n-sliding-popup-visible] {
+    opacity: 1;
+  }
+
+  @include oGridRespondTo($until: M) {
+    right: 0;
+    left: 0;
+  }
+
+  @include oGridRespondTo($from: M) {
+
+    &[data-n-sliding-popup-position*="left"] {
+      left: 1vh;
+    }
+
+    &[data-n-sliding-popup-position*="right"] {
+      right: 1vh;
+    }
+  }
+
+  &[data-n-sliding-popup-position*="bottom"] {
+    bottom: -50vh;
+    &[data-n-sliding-popup-visible] {
+      bottom: 1vh;
+    }
+  }
+
+  &[data-n-sliding-popup-position*="top"] {
+    top: -50vh;
+    &[data-n-sliding-popup-visible] {
+      top: 1vh;
+    }
+  }
+
+  .n-sliding-popup-close {
+    @include oIconsContent(
+      $icon-name: 'cross',
+      $color: oColorsByName('black-70'),
+      $size: 30,
+      $iconset-version: 1
+    );
+    border: 0;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .n-sliding-popup-close-label {
+    position: absolute;
+    left: -10000px;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+  }
+
+}
