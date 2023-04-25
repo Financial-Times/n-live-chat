@@ -27,7 +27,7 @@ interface LiveChatOptions {
 	liveChatURL: string;
 }
 
-class LiveChat {
+export class LiveChat {
 	config: SalesforceConfig;
 	container: HTMLElement;
 	button: HTMLElement;
@@ -42,7 +42,7 @@ class LiveChat {
 		this.offlineIndicator = document.getElementById('liveAgentOfflineIndicator') as HTMLDivElement;
 		this.config = this.container.dataset as SalesforceConfig;
 		// @ts-ignore
-		this.flags = pageKitFlags.init();
+		this.flags = pageKitFlags?.init ? pageKitFlags.init() : null;
 
 
 		window._laq = window._laq || [];
@@ -53,7 +53,7 @@ class LiveChat {
 	}
 
 	initializer(onInit?: Function): Function {
-		if(this.flags.get('liveChat')) {
+		if(this.flags?.get('liveChat')) {
 			return (callbacks?: LiveChatCallbacks | null, options?: LiveChatOptions | null): void => {
 				let script: HTMLScriptElement = document.createElement('script');
 				script.src = `${this.config.host}/content/g/js/41.0/deployment.js`;
