@@ -23,7 +23,7 @@ const salesforceConfig = {
 	organisationId: process.env.SALESFORCE_ORGANISATION_ID,
 	buttonReference: process.env.SALESFORCE_BUTTON_REFERENCE,
 	host: process.env.SALESFORCE_HOST
-	
+
 };
 
 app.get('/popup', (req, res) => {
