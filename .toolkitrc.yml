@@ -1,0 +1,39 @@
+plugins:
+  - '@dotcom-tool-kit/component'
+  - '@dotcom-tool-kit/node'
+  - '@dotcom-tool-kit/pa11y'
+  - '@dotcom-tool-kit/typescript'
+  - '@dotcom-tool-kit/webpack'
+  - './toolkit/cleanup'
+  - './toolkit/rollup'
+  - './toolkit/sass'
+hooks:
+  'build:local':
+    - Cleanup
+    - TypeScriptBuild
+    - Rollup
+    - Sass
+    - WebpackDevelopment
+    - SassDemo
+  'build:ci':
+    - Cleanup
+    - TypeScriptBuild
+    - Rollup
+    - Sass
+    - WebpackDevelopment
+    - SassDemo
+  'run:local':
+    - Node
+  'test:local':
+    - Pa11y
+  'test:ci':
+    - Node
+options:
+  '@dotcom-tool-kit/node':
+    entry: 'demos/app.js'
+    ports: [5005]
+  '@dotcom-tool-kit/vault':
+    team: 'next'
+    app: 'n-live-chat'
+  '@dotcom-tool-kit/webpack':
+    configPath: 'demos/webpack.config.js'
