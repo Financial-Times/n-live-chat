@@ -13,5 +13,4 @@ secret-squirrel.js
 rollup.config.js
 renovate.json
 README.md
-Makefile
 CODEOWNERS
