@@ -1,7 +1,7 @@
 plugins:
   - '@dotcom-tool-kit/component'
   - '@dotcom-tool-kit/node'
-  - '@dotcom-tool-kit/pa11y'
+  - '@dotcom-tool-kit/jest'
   - '@dotcom-tool-kit/typescript'
   - '@dotcom-tool-kit/webpack'
   - './toolkit/cleanup'
@@ -25,15 +25,15 @@ hooks:
   'run:local':
     - Node
   'test:local':
-    - Pa11y
+    - TypeScriptTest
+    - JestLocal
   'test:ci':
-    - Node
+    - JestCI
 options:
   '@dotcom-tool-kit/node':
     entry: 'demos/app.js'
     ports: [5005]
-  '@dotcom-tool-kit/vault':
-    team: 'next'
-    app: 'n-live-chat'
+  '@dotcom-tool-kit/doppler':
+    project: 'repo_n-live-chat'
   '@dotcom-tool-kit/webpack':
     configPath: 'demos/webpack.config.js'

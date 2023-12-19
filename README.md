@@ -127,7 +127,7 @@ new LiveChatPopup().init(null, options);
 ### Demos
 
 ```sh
-make install .env demo
+npm run start
 ```
 
 - [Inline component demo](http://localhost:5005/inline)(for the purpose of demo this uses the staging environment url)
