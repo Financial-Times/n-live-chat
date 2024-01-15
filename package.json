@@ -59,7 +59,7 @@
     "test": "dotcom-tool-kit test:local"
   },
   "dependencies": {
-    "n-ui-foundations": "^9.0.0",
+    "n-ui-foundations": "^10.0.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
