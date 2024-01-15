@@ -9,7 +9,6 @@ demos
 .snyk
 .pa11yci.js
 tsconfig.json
-secret-squirrel.js
 rollup.config.js
 renovate.json
 README.md
