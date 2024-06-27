@@ -6,7 +6,6 @@ demos
 .github
 .circleci
 .babelrc
-.snyk
 .pa11yci.js
 tsconfig.json
 rollup.config.js
