@@ -37,3 +37,6 @@ options:
     project: 'repo_n-live-chat'
   '@dotcom-tool-kit/webpack':
     configPath: 'demos/webpack.config.js'
+  '@dotcom-tool-kit/circleci':
+    nodeVersion:
+      - '18.20-browsers'
