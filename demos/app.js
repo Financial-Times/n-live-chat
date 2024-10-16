@@ -30,6 +30,7 @@ app.get('/popup', (req, res) => {
 	const { liveChatStaging } = res.locals.flags;
 	salesforceConfig.liveChatURL= liveChatStaging ? process.env.LIVE_CHAT_STAGING_HOST : process.env.LIVE_CHAT_PROD_HOST;
 	const page = demoTemplate.default({
+		liveChatProjectFelix: false,
 		style: 'popup',
 		salesforceConfig
 	})
@@ -40,9 +41,37 @@ app.get('/inline', (req, res) => {
 	const { liveChatStaging } = res.locals.flags;
 	salesforceConfig.liveChatURL= liveChatStaging ? process.env.LIVE_CHAT_STAGING_HOST : process.env.LIVE_CHAT_PROD_HOST;
 	const page = demoTemplate.default({
+		liveChatProjectFelix: false,
 		style: 'inline',
 		salesforceConfig
 	})
+	res.send(ReactDOM.renderToStaticMarkup(page))
+});
+
+const salesforceConfigProjectFelix = {
+	scriptUrl: process.env.SALESFORCE_FELIX_SCRIPT_URL_UAT,
+	organisationId: process.env.SALESFORCE_FELIX_ORGANISATION_ID_UAT,
+	embeddedDeploymentService: process.env.SALESFORCE_FELIX_EMBEDDED_DEPLOYMENT_SERVICE_UAT,
+	embeddedServiceUrl: process.env.SALESFORCE_FELIX_EMBEDDED_SERVICE_URL_UAT,
+	scrt2Url: process.env.SALESFORCE_FELIX_SCRT_2_URL_UAT,
+	chatOrigin: "n-live-chat demo",
+};
+
+app.get('/inline-project-felix', (req, res) => {
+	const page = demoTemplate.default({
+		liveChatProjectFelix: true,
+		style: 'inline',
+		salesforceConfig: salesforceConfigProjectFelix,
+	});
+	res.send(ReactDOM.renderToStaticMarkup(page))
+});
+
+app.get('/popup-project-felix', (req, res) => {
+	const page = demoTemplate.default({
+		liveChatProjectFelix: true,
+		style: 'popup',
+		salesforceConfig: salesforceConfigProjectFelix,
+	});
 	res.send(ReactDOM.renderToStaticMarkup(page))
 });
 
