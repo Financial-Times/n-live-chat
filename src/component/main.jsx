@@ -31,6 +31,11 @@ const InlineLiveChat = () => {
 }
 const DEFAULT_STYLE = 'inline';
 
+// The Live Chat component
+// The props are the union of the old live chat and Project Felix live chat props
+// old props: deploymentId, organisationId, buttonReference, host
+// Project Felix props: scriptUrl, organisationId, embeddedDeploymentService,
+//   embeddedServiceUrl, scrt2Url, chatOrigin
 const LiveChat = ({
 	liveChatProjectFelix = false,
 	style = DEFAULT_STYLE,

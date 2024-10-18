@@ -114,14 +114,17 @@ export class LiveChat {
 		callbacks?: LiveChatCallbacks | null,
 		options?: LiveChatOptions | null
 	): void {
+		// initialize the script for the live chat
+		// more details on https://financialtimes.atlassian.net/wiki/spaces/SF/pages/8578334753/CC+MIAW+Chat+Snippet#Chat-Origin-Configuration
 		const initProjectFelixScript: Function = (): void => {
 			try {
+				// there is a limit of 100 characters for the hidden field values
 				const chatOriginURL = window.location.toString().substring(0, 100);
 				window.embeddedservice_bootstrap.settings.language = 'en_US';
 				window.addEventListener('onEmbeddedMessagingReady', () => {
 					window.embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
 						"source": "Customer Care",
-						"chatOrigin": "Help Centre",
+						"chatOrigin": this.config.chatOrigin,
 						"chatOriginURL": chatOriginURL
 					});
 				});
@@ -139,6 +142,9 @@ export class LiveChat {
 			}
 		};
 
+		// check if the script is loaded every second
+		// if the embeddedservice_bootstrap is loaded into the window
+		// initialize the script for the live chat
 		const checkScriptLoaded = (callback: Function): void => {
 			const interval = setInterval(() => {
 				if (window.embeddedservice_bootstrap) {
@@ -155,10 +161,19 @@ export class LiveChat {
 				if (button) {
 					clearInterval(interval);
 
-					// initializer callback
+					// custom initializer callback from the child class
+					// this allows custom actions to be performed once the live chat DOM is ready
 					if (onInit) {
 						onInit(button);
 					}
+					// custom callback triggers from the consuming app
+					// there is no online/offline signals for the new live chat
+					// so only open are available
+					button.onclick = () => {
+						if (callbacks?.open) {
+							callbacks.open();
+						}
+					};
 
 					const tooltip = document.createElement('div');
 					tooltip.className = 'tooltip-help';
