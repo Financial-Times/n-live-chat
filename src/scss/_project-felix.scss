@@ -1,0 +1,50 @@
+
+@mixin nLiveChatProjectFelix() {
+	.tooltip-help {
+		position: fixed;
+		bottom: 94px;
+		right: 20px;
+		width: 260px;
+		background-color: white;
+		color: black;
+		text-align: left;
+		padding: 15px 35px 15px 20px;
+		z-index: 1;
+		visibility: visible;
+		box-shadow: 0 8px 14px 0 rgba(77, 72, 69, 0.1);
+
+		.highlight-text {
+			font-weight: 600;
+		}
+
+		.chatbot__message__close {
+			border: none;
+			background: url(https://www.ft.com/__origami/service/image/v2/images/raw/fticon-v1%3Across?height=33&source=help-center&width=33);
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			background-size: 30px;
+			background-repeat: no-repeat;
+			background-position: 50%;
+			cursor: pointer;
+		}
+	}
+
+	.tooltip-help:after {
+		border-left: 14px solid transparent;
+		border-right: 14px solid transparent;
+		border-top: 8px solid #fff;
+		bottom: -8px;
+		content: '';
+		height: 0;
+		position: absolute;
+		right: 40px;
+		width: 0;
+	}
+
+	.embeddedMessagingConversationButtonWrapper .embeddedMessagingConversationButton:not(.no-hover):hover {
+		opacity: 1 !important;
+	}
+}

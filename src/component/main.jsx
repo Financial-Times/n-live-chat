@@ -31,29 +31,64 @@ const InlineLiveChat = () => {
 }
 const DEFAULT_STYLE = 'inline';
 
-const LiveChat = ({ style = DEFAULT_STYLE, salesforceConfig = {} }) => {
-	const { deploymentId, organisationId, buttonReference, host } = salesforceConfig;
+// The Live Chat component
+// The props are the union of the old live chat and Project Felix live chat props
+// old props: deploymentId, organisationId, buttonReference, host
+// Project Felix props: scriptUrl, organisationId, embeddedDeploymentService,
+//   embeddedServiceUrl, scrt2Url, chatOrigin
+const LiveChat = ({
+	liveChatProjectFelix = false,
+	style = DEFAULT_STYLE,
+	salesforceConfig = {},
+}) => {
+	const {
+		deploymentId,
+		organisationId,
+		buttonReference,
+		host,
+
+		scriptUrl,
+		embeddedDeploymentService,
+		embeddedServiceUrl,
+		scrt2Url,
+		chatOrigin,
+	} = salesforceConfig;
 	return (
 		<div
 			id="liveAgent"
+			data-live-chat-project-felix={liveChatProjectFelix}
 			data-deployment-id={deploymentId}
 			data-organisation-id={organisationId}
 			data-button-reference={buttonReference}
-			data-host={host} >
+			data-host={host}
+
+			data-script-url={scriptUrl}
+			data-embedded-deployment-service={embeddedDeploymentService}
+			data-embedded-service-url={embeddedServiceUrl}
+			data-scrt2-url={scrt2Url}
+			data-chat-origin={chatOrigin}
+		>
 			{ style === DEFAULT_STYLE ? <InlineLiveChat /> : <PopUpLiveChat /> }
 			<div id="liveAgentOnlineIndicator"></div>
 			<div id="liveAgentOfflineIndicator"></div>
 		</div>
-	)
+	);
 }
 
 LiveChat.propTypes = {
+	liveChatProjectFelix: PropTypes.bool,
 	style: PropTypes.string,
 	salesforceConfig: PropTypes.shape({
-		deploymentId: PropTypes.string.isRequired,
+		deploymentId: PropTypes.string,
 		organisationId: PropTypes.string.isRequired,
-		buttonReference: PropTypes.string.isRequired,
-		host: PropTypes.string.isRequired
+		buttonReference: PropTypes.string,
+		host: PropTypes.string,
+
+		scriptUrl: PropTypes.string,
+		chatOrigin: PropTypes.string,
+		embeddedDeploymentService: PropTypes.string,
+		embeddedServiceUrl: PropTypes.string,
+		scrt2URL: PropTypes.string,
 	})
 };
 
